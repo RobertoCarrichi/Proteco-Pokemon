@@ -13,7 +13,7 @@ public class Pokemon {
     }
 
     public int recibirDanio(){
-
+    	
     }
 
     public int recibirPuntosVida(){
