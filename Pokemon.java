@@ -1,35 +1,20 @@
 public class Pokemon {
     String apodo;
     int puntosVida;
-    String ataque;
+    int ataque;
     int defensa;
     int velocidad;
     boolean estado; // Vivo o muerto
     String tipo;
+    String movimiento;
 
     public Pokemon(String apodo){
     	this.apodo = apodo;
     	this.asignarValores();
     }
 
-    public int recibirDanio(){
-    	
-    }
-
-    public int recibirPuntosVida(){
-
-    }
-
-    public int recibirPuntosAtaque(){
-
-    }
-
-    public int recibirPuntosDefensa(){
-
-    }
-
     public float calcularMultiplicadorAtaque(Pokemon oponente){
-
+        
     }
 
     public void asignarValores(){

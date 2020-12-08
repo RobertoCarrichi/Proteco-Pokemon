@@ -11,12 +11,12 @@ public class Pocion{
 		*	los atributos del pokemon según el tipo de poción
 		*	solicitado.
 		*/
-		if(this.tipo.toLowerCase()=="ataque") {
-			
-		}else if (this.tipo.toLowerCase()=="defensa") {
-			
-		}else if (this.tipo.toLowerCase()=="salud") {
-			
+		if(this.tipo.equals("Ataque")) {
+			pokemon.ataque = pokemon.ataque + (int)(pokemon.ataque*0.1);
+		}else if (this.tipo.equals("Defensa")) {
+			pokemon.defensa = pokemon.defensa + (int)(pokemon.defensa*0.1);
+		}else if (this.tipo.equals("Salud")) {
+			pokemon.puntosVida = pokemon.puntosVida + (int)(pokemon.puntosVida*0.2);
 		}else{
 			System.out.println("ERROR! ¿Como puede haber una posion con tipo invalido?");
 		}

@@ -8,4 +8,5 @@ public class Batalla{
 	public static void main(String[] args) {
 		System.out.println("INICIA EL COMBATE!");
 	}
+	
 }
