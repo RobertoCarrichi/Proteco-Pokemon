@@ -24,6 +24,9 @@ public class Batalla{
 			Jugador jugador1 = new Jugador(1);
 			// Thread.sleep(1650);
 			// Jugador jugador2 = new Jugador(2);
+
+			
+
 			
 		}catch (Exception e) {
 			System.out.println("Al parecer tenemos problemas al cargar contenido del juego.");

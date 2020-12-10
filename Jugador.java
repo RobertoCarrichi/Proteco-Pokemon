@@ -30,6 +30,9 @@ public class Jugador {
         System.out.println("\nBienvenido al juego 'Jugador" + numJugador + "'!");
         System.out.printf("Antes de todo, elige un mejor nombre:");
         setNombre();
+        setPociones();
+        mostrarPociones();
+        setPokemones();
     }
 
     /************************************************
@@ -75,15 +78,41 @@ public class Jugador {
      * Genera las pociones que debe tener cada jugador por defecto. Por lo que no requiere de parámetros.
      */
     public void setPociones() {
-        this.pociones.add(new Pocion("Vida"));
+        this.pociones.add(new Pocion("Salud"));
+        this.pociones.add(new Pocion("Salud"));
+        this.pociones.add(new Pocion("Ataque"));
+        this.pociones.add(new Pocion("Ataque"));
+        this.pociones.add(new Pocion("Defensa"));
+        this.pociones.add(new Pocion("Defensa"));
     }
 
     /**
-     * 
-     * @return
+     * Permite obtener la lista de pociones que tiene el jugador.
+     * @return Retorna una estructura de tipo ArrayList que contiene 6 pociones por defecto, a menos que sean utilizadas.
      */
     public ArrayList<Pocion> getPociones() {
         return pociones;
+    }
+
+    public void setPokemones(){
+        Menu menu = new Menu();
+        System.out.println(" Cada jugador tiene derecho de tener 6 pokemon en su equipo, quieres elegirlos?");
+        System.out.println(" Se elegira aleatoriamente el equipo si escribes 'No' y se tomara esta opcion si dejas la respuesta en blanco. [Si/No] (No)");
+        System.out.printf(" \n ~> ");
+        String eleccion = scan.nextLine();
+        if ( ! eleccion.isEmpty() && (eleccion.charAt(0) == 'S' || eleccion.charAt(0) == 's')){
+            System.out.println("\n\tEntendido! Entonces comienza la eleccion de tu equipo, ten cuidado, solo tienes una oportunidad: ");
+            menu.eleccionPokemon(this, false);
+        }else{
+            System.out.println("\n\tDe acuerdo, los seleccionaremos por ti.\n");
+            menu.eleccionPokemon(this, true);
+        }
+        System.out.println(" \n\tEste es tu equipo: ");
+        mostrarPokemon();
+    }
+
+    public ArrayList<Pokemon> getPokemones() {
+        return pokemones;
     }
 
     /************************************************
@@ -91,11 +120,31 @@ public class Jugador {
      ************************************************/
 
     /**
-     * Mostrar en consola el equipo de pokémon que tiene el jugador.
+     * Muesta en consola el equipo de pokémon que tiene el jugador.
      */
     public void mostrarPokemon() {
         for (Pokemon pokemon : pokemones) {
             pokemon.mostrarInfo();
         }
+    }
+
+    /**
+     * Muestra las pociones que tiene disponibles para utilizar el jugador.
+     */
+    public void mostrarPociones() {
+        int cantidad = 1;
+        for (Pocion pocion : pociones) {
+            System.out.println("["+cantidad+"]");
+            pocion.info();
+            System.out.println();
+            cantidad+=1;
+        }
+    }
+
+    /**
+     * Permite añadir pokémon a la lista del jugador externamente.
+     */
+    public void addPokemon(Pokemon pokemon){
+        this.pokemones.add(pokemon);
     }
 }

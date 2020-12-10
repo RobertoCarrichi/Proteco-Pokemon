@@ -34,4 +34,12 @@ public class Pocion{
 			System.out.println("ERROR! ¿Como puede haber una posion con tipo invalido?");
 		}
 	}
+
+	/**
+	 * Indica la información general de una sola poción.
+	 */
+	public void info(){
+		System.out.println("    POCION");
+		System.out.println("Tipo: "+this.tipo);
+	}
 }	

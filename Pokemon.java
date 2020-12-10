@@ -195,7 +195,7 @@ public class Pokemon {
         /**
          * RANGO indica el la cantidad de números posibles entre el valor mínimo y el máximo evitando que exista un valor cero.
          */
-        int rango = max - min + 1;
+        int rango = max - min;
         /**
          * NORMAL representará el valor aleatorio inicial en el rango específicado.
          */
@@ -210,7 +210,6 @@ public class Pokemon {
          * del pokémon).
          */
         double aux = Math.random()*2; 
-System.out.println(aux);
         /**
          * RESULTADO representará el valor final con el que se asignará al atributo del pokémon.
          */
@@ -219,7 +218,7 @@ System.out.println(aux);
          * En esta condición si el valor de AUX es de 0 hasta 1 significa que el valor de EXTRA se restará, si el valor de 
          * AUX es de 1 a 2 entonces el valor EXTRA se sumará.
          */
-        if (aux>1){
+        if (aux>=1){
             resultado = normal+extra;
         } else {
             resultado = normal-extra;
@@ -317,9 +316,13 @@ System.out.println(aux);
         System.out.println("Vida: "+this.vida);
         System.out.println("Ataque: "+this.ataque);
         System.out.println("Defensa: "+this.defensa);
-        System.out.println("Velocidad: "+this.defensa);
+        System.out.println("Velocidad: "+this.velocidad);
 
 // AQUI FALTARIA IMPRIMIR LOS MOVIMIENTOS QUE TIENE EL POKEMON.
     }
 
+
+    public String toString() {
+        return "   "+this.apodo.toUpperCase()+"\nVida: "+this.vida+"\nAtaque: "+this.ataque+"\nDefensa: "+this.defensa+"\nVelocidad: "+this.velocidad;
+    }
 }
