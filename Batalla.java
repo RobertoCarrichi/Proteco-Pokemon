@@ -4,8 +4,9 @@ public class Batalla{
 	*	toda la información que involucre el proceso de un
 	*	combate entre jugadores.
 	*/
-	// Menu menus = new Menu();
 	public static void main(String[] args) {
+
+// Menu menus = new Menu();
 
 		System.out.println("\n\t############### INICIANDO POKEJUEGO ############### \n");
 		try {
@@ -19,6 +20,7 @@ public class Batalla{
 			/*************************************************************** 
 			* INICIA LA CREACION Y ASIGNACION DE POKEMON PARA CADA JUGADOR *
 			****************************************************************/
+
 			Jugador jugador1 = new Jugador(1);
 			// Thread.sleep(1650);
 			// Jugador jugador2 = new Jugador(2);

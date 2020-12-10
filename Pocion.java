@@ -1,17 +1,27 @@
 public class Pocion{
-	String tipo;
+    /******************************************
+     *        ATRIBUTOS DE INSTANCIA          *
+     ******************************************/
+	
+	 /**
+	 * Indica el tipo de poción, puede ser de salud, ataque o defensa.
+	 */
+	private String tipo;
 
+    /******************************************
+     *              CONSTRUCTOR               *
+     ******************************************/
+	/**
+	 * Inicializa una instancia que será capaz de aumentar características de un pokemón.
+	 * @param tipo
+	 */
 	public Pocion(String tipo){
 		this.tipo=tipo;
 	}
 
 	/**
-	 * "USAR POCIÓN"
-	 * La funcionalidad de este método será modificar
-	 * los atributos del pokemon según el tipo de poción
-	 * solicitado.
-	 * @param pokemon
-	 * @return
+	 * Modifica los atributos del pokemon según el tipo de poción que llama al método.
+	 * @param pokemon Indica el pokemon al que se le aplicará la poción.
 	 */
 	public void usar(Pokemon pokemon){
 		if(this.tipo.equals("Ataque")) {
