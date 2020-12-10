@@ -1,7 +1,13 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Menu{
+
+	/******************************************
+     *         INSTANCIAS DE APOYO            *
+     ******************************************/
+    Scanner scan = new Scanner(System.in);
 
     /******************************************
      *        ATRIBUTOS DE INSTANCIA          *
@@ -35,13 +41,13 @@ public class Menu{
 	 * entonces se sigue el proceso de elección individual.
 	 */
 	public void eleccionPokemon(Jugador jugador, boolean aleatoriamente){
+		/**
+		 * DISPONIBLES será una copia de los nombres que hay disponibles en el juego.
+		 */
+		ArrayList<String> disponibles = pokemonDisponibles;
 		if (aleatoriamente) {
-			// Se eligió que fueran aleatoriamente
-			/**
-			 * DISPONIBLES será una copia de los nombres que hay disponibles en el juego.
-			 */
-			ArrayList<String> disponibles = pokemonDisponibles;
 			/* 
+				Si entra aquí es porque existe un "true". 
 				Para la implementación de elegir aleatoriamente se dividirá la lista de DISPONIBLES en cuatro 
 				bloques diferentes:
 					0 - 2 Los tipo agua
@@ -92,13 +98,30 @@ public class Menu{
 				SE HAN TERMINADO DE ELEGIR POKEMON DE FORMA ALEATORIA.
 			*/
 		} else {
-			// Será pokemón por pokemón
-			for (int i = 0; i < 6; i++) {
-				
-			}
-			
-		}
-		
-	}
+			System.out.println("#######################################################");
+			System.out.println("#  COMIENZA EL PROCESO DE ELECCION DE TU EQUIPO DE    #");
+			System.out.println("#                      POKEMON                        #");
+			System.out.println("#                                                     #");
+			System.out.println("# Se indicaran solo los nombres que tiene disponible  #");
+			System.out.println("# el entrenador para elegir, pues sus estadísticas    #");
+			System.out.println("# se elegiran aleatoriamente para que exista igualdad #");
+			System.out.println("# de condiciones entre todos los pokemon.             #");
+			System.out.println("#######################################################");
 
+			for (int i = 0; i < 6; i++) {
+				String apodo = "";
+				while (! disponibles.contains(apodo)) {
+					System.out.println("Elige uno de los siguientes nombres: ");
+					System.out.println(disponibles.toString());
+					apodo = scan.nextLine();
+					if (!disponibles.contains(apodo)) {
+						System.out.println("OH NO! No está en la lista.");
+					} else {
+						System.out.println("Si se encontro.");
+						break;
+					}
+				}
+			}
+		}
+	}
 }
