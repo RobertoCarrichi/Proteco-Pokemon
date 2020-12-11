@@ -1,4 +1,4 @@
-public class Batalla{
+public class Main{
 	/**
 	*	Esta clase será la que estará almacenando 
 	*	toda la información que involucre el proceso de un
@@ -17,12 +17,15 @@ public class Batalla{
 			/*************************************************************** 
 			* INICIA LA CREACION Y ASIGNACION DE POKEMON PARA CADA JUGADOR *
 			****************************************************************/
-
 			Jugador jugador1 = new Jugador(1);
 			// Thread.sleep(1650);
-			Jugador jugador2 = new Jugador(2);
+            Jugador jugador2 = new Jugador(2);
 
-			Combate.inicio(jugador1,jugador2);			
+            /******************************* **************** 
+			*               INICIA EL COMBATE!              *
+			*************************************************/
+            Combate.inicio(jugador1,jugador2);
+            
 		}catch (Exception e) {
 			System.out.println("Al parecer tenemos problemas al cargar contenido del juego.");
 			e.printStackTrace();

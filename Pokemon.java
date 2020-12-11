@@ -44,7 +44,7 @@ public class Pokemon {
     /**
      * Indica si se encuentra en buen estado (true) o en mal estado (false).
      */
-    boolean estado; 
+    private boolean estado; 
 
 //AÚN FALTA DEFINIR LOS MOVIMIENTOS DE CADA POKEMON
     
@@ -69,7 +69,7 @@ public class Pokemon {
      *              GETTERS Y SETTERS               *
      ************************************************/
     
-    /**
+	/**
      * Permitirá poder asignar un tipo al pokemon, alguno como "Agua", "Fuego", "Hierba" o "Eléctrico".
      * @param tipo Se requiere de una cadena que será asignada al atributo "tipo" del pokémon.
      */
@@ -168,6 +168,25 @@ public class Pokemon {
      */
 	public int getVida() {
 		return this.vida;
+	}
+
+    /**
+     * Permite asignar el estado del pokémon, si sus puntos de vida son mayores a cero, este estado será representado
+     * por un "true" y en consola se vería como con "OK", en caso que su estado será "false" entonces se encuentra 
+     * debilidado o "BAD".
+     * @param estado Valor boobleano que será asignado al atributo "estado" de un pokémon.
+     */
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
+
+    /**
+     * Permite tener un acceso a el parámetro "estado" que tiene un pokémon para saber si está en condiciones de pelear
+     * o si no lo está.
+     * @return Devuelve el valor que representa el estado actual  del pokémon.
+     */
+    public boolean getEstado() {
+		return this.estado;
 	}
 
     /**************************************

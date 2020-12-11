@@ -2,6 +2,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+
+
+/**
+ * Proporciona al usuario los distintos menús de elección durante el combate y construcción
+ * de instancias como el equipo de pokémon de un jugador.
+ */
 public class Menu{
 
 	/******************************************
@@ -22,30 +28,36 @@ public class Menu{
      ******************************************/
 
 	/**
-	 * La funcionalidad principal de este método
-	 * será proporcionar al usuario los distintos
-	 * menús durante el combate.
-	 */
-
-	/**
-	 * Este constructor permite la creación de una instancia sin parámetros.
+	 * Este constructor permite la creación de una instancia sin parámetros iniciales.
 	 */
 	public Menu(){}
 
 	/**
-	 * Ejecuta el ciclo de elección de un equipo para un jugador.
-	 * El segundo parámetro sería el "modo", si es "true" se eligen los pokemon aleatoriamente y si es "false" se
-	 * solicita al usuario que escoja uno por uno.
-	 * @param jugador Indica el jugador al que se le está asignando el equipo.
-	 * @param aleatoriamente Expresa con un "true" que el jugador si quiso que se eligieran aleatoriamente, si es "false"
-	 * entonces se sigue el proceso de elección individual.
+	 * Ejecuta el ciclo de elección de un equipo para un jugador. El segundo
+	 * parámetro sería el "modo", si es "true" se eligen los pokemon aleatoriamente
+	 * y si es "false" se solicita al usuario que escoja uno por uno.
+	 * 
+	 * @param jugador        Indica el jugador al que se le está asignando el
+	 *                       equipo.
+	 * @param aleatoriamente Expresa con un "true" que el jugador si quiso que se
+	 *                       eligieran aleatoriamente, si es "false" entonces se
+	 *                       sigue el proceso de elección individual.
+	 * @throws InterruptedException
 	 */
-	public void eleccionPokemon(Jugador jugador, boolean aleatoriamente){
+	public void eleccionPokemon(Jugador jugador, boolean aleatoriamente) throws InterruptedException {
 		/**
 		 * DISPONIBLES será una copia de los nombres que hay disponibles en el juego.
 		 */
 		ArrayList<String> disponibles = pokemonDisponibles;
 		if (aleatoriamente) {
+			System.out.println("\n\t#######################################################");
+			System.out.println("\t#  COMIENZA EL PROCESO DE ELECCION DE TU EQUIPO DE    #");
+			System.out.println("\t#                      POKEMON                        #");
+			System.out.println("\t#                                                     #");
+			System.out.println("\t# Se elegirán aleatoriamente y al final se mostrarán  #");
+			System.out.println("\t# los pokemon que conforman a tu equipo.              #");
+			System.out.println("\t#######################################################\n");
+			System.out.println("\n\tEstamos eligiendo tus pokemon, un momento por favor...\n");
 			/* 
 				Si entra aquí es porque existe un "true". 
 				Para la implementación de elegir aleatoriamente se dividirá la lista de DISPONIBLES en cuatro 
@@ -97,28 +109,48 @@ public class Menu{
 			/* 
 				SE HAN TERMINADO DE ELEGIR POKEMON DE FORMA ALEATORIA.
 			*/
+			// Thread.sleep(3000);
+			System.out.println("Hemos terminado de elegir a tus pokemon!\n");
 		} else {
-			System.out.println("#######################################################");
-			System.out.println("#  COMIENZA EL PROCESO DE ELECCION DE TU EQUIPO DE    #");
-			System.out.println("#                      POKEMON                        #");
-			System.out.println("#                                                     #");
-			System.out.println("# Se indicaran solo los nombres que tiene disponible  #");
-			System.out.println("# el entrenador para elegir, pues sus estadísticas    #");
-			System.out.println("# se elegiran aleatoriamente para que exista igualdad #");
-			System.out.println("# de condiciones entre todos los pokemon.             #");
-			System.out.println("#######################################################");
-
+			System.out.println("\n\t#######################################################");
+			System.out.println("\t#  COMIENZA EL PROCESO DE ELECCION DE TU EQUIPO DE    #");
+			System.out.println("\t#                      POKEMON                        #");
+			System.out.println("\t#                                                     #");
+			System.out.println("\t# Se indicaran solo los nombres que tiene disponible  #");
+			System.out.println("\t# el entrenador para elegir, pues sus estadísticas    #");
+			System.out.println("\t# se elegiran aleatoriamente para que exista igualdad #");
+			System.out.println("\t# de condiciones entre todos los pokemon.             #");
+			System.out.println("\t#######################################################\n");
+			int elegidos=6;
 			for (int i = 0; i < 6; i++) {
-				String apodo = "";
-				while (! disponibles.contains(apodo)) {
+				boolean exit = false;
+				while (! exit) {
 					System.out.println("Elige uno de los siguientes nombres: ");
-					System.out.println(disponibles.toString());
-					apodo = scan.nextLine();
+					System.out.println("\t"+disponibles.toString());
+					System.out.printf(" ~> ");
+					String apodo = scan.nextLine();
 					if (!disponibles.contains(apodo)) {
-						System.out.println("OH NO! No está en la lista.");
+						System.out.println("\n\tOH NO! No está en la lista, puede que te hayas equivocado al escribir. Elige con cuidado.\n");
 					} else {
-						System.out.println("Si se encontro.");
-						break;
+						/* 
+							Si se encontró el pokémon en la lista, por lo que se añadirá a la lista del jugador
+							y posteriormente se eliminará de la lista de "pokémon disponibles" para que no se repitan
+							pokémon en el equipo.
+						*/
+						jugador.addPokemon(new Pokemon(apodo));
+						elegidos-=1;
+						System.out.printf("\n\tCorrecto! "+apodo+" ahora es parte de tu equipo. ");
+						if ( elegidos != 0 ) {
+							System.out.printf("Aun debes elegir "+elegidos+" pokemon, sigamos...\n\n");
+						} else {
+							System.out.printf("Ya has terminado de elegir a tu equipo!\n");
+						}
+						disponibles.remove(apodo);						
+						/* 
+							Se cambia de valor a EXIT para que ya no pida otro nombre ya que si se encontró
+							esto se hace para que se pueda pasar a la elección de un nuevo pokémon.
+						*/
+						exit=true; 
 					}
 				}
 			}
