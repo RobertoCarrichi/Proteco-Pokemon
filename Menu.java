@@ -11,6 +11,9 @@ public class Menu{
 	/******************************************
      *         INSTANCIAS DE APOYO            *
      ******************************************/
+	/**
+	 * Instancia de apoyo que permite solicitar opciones al usuario desde su teclado.
+	 */
     Scanner scan = new Scanner(System.in);
 
     /******************************************
@@ -40,7 +43,8 @@ public class Menu{
 	 * @param aleatoriamente Expresa con un "true" que el jugador si quiso que se
 	 *                       eligieran aleatoriamente, si es "false" entonces se
 	 *                       sigue el proceso de elección individual.
-	 * @throws InterruptedException
+     * @throws InterruptedException Avisa una posible interface la cual se requiere para poder
+     * crear pausar y poder hacer más amigable la interacción con el usuario.
 	 */
 	public void eleccionPokemon(Jugador jugador, boolean aleatoriamente) throws InterruptedException {
 		/**
@@ -169,7 +173,7 @@ public class Menu{
 	}
 
 	/**
-	 * 
+	 * Método que muestra las opciones que tiene un jugador al inicial su turno.
 	 */
 	public int mostrarOpcionesTurno(){
 		int opcion; 
@@ -192,9 +196,11 @@ public class Menu{
 	}
 
 	/**
-	 * 
-	 * @param jugador
-	 * @return
+	 * Permite mostar al jugador en turno las pociones que tiene y en que estado se encuentran, 
+	 * posteriormente le solicita elegir alguna que no haya sido utilizada con anterioridad.
+	 * @param jugador Requiere de una instancia de tipo JUGADOR para saber la lista de pociones
+	 * correcta.
+	 * @return Retorna el índice que hace referencia a la poción elegida por el jugador.
 	 */
 	public int elegirPocion(Jugador jugador){
 		jugador.mostrarPociones();
@@ -215,9 +221,10 @@ public class Menu{
 	}
 
 	/**
-	 * 
-	 * @param jugador
-	 * @return
+	 * Método genérico que muestra al equipo actual y solicita la elección de alguno de los pokémon en
+	 * el equipo.
+	 * @param jugador Requiere del jugador que mande a llamar a este método.
+	 * @return Retorna el índice que hará referencia al pokemón que el jugador eligió.
 	 */
 	public int elegirPokemon(Jugador jugador){
 		jugador.mostrarPokemon();
@@ -233,9 +240,10 @@ public class Menu{
 	}
 
 	/**
-	 * 
-	 * @param jugador
-	 * @return
+	 * Permite poder cambiar de pokémon peleador.
+	 * @param jugador Se requiere de un entrenador para efectuar el cambio.
+	 * @return Retorna el nuevo índice que representará al nuevo pokémon peleador del jugador que
+	 * solicitó esta acción.
 	 */
 	public int elegirPeleador(Jugador jugador){
 		jugador.mostrarPokemon();
@@ -260,9 +268,11 @@ public class Menu{
 	}
 
 	/**
-	 * 
+	 * Permite mostrar información de los ataques que tiene el pokémon peleador del jugador y solicita
+	 * que se eliga uno para efectual el ataque.
 	 * @param jugador Dice que jugador elegirá el ataque.
-	 * @return
+	 * @return Retorna un valor entre 0 y 1 que represente alguno de los movimientos que el pokémon
+	 * peleador del jugador tiene disponibles.
 	 */
 	public int elegirAtaque(Jugador jugador){
 		System.out.println("Los ataques disponibles de tu pokemon actual son: ");

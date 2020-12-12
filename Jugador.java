@@ -9,7 +9,6 @@ public class Jugador {
     /******************************************
      *         INSTANCIAS DE APOYO            *
      ******************************************/
-
     /**
      * Una instancia de apoyo para que el usuario pueda elegir opciones al momento de la construcción
      * de algún jugador.
@@ -54,7 +53,9 @@ public class Jugador {
      * aleatoriamente 6 diferentes.
      * 
      * @param numJugador Indica el numero de jugador que se esta registrando para
-     *                   que tengan nombres distintos por defecto.
+     * que tengan nombres distintos por defecto.
+     * @throws InterruptedException Avisa una posible interrupción la cual se requiere para poder
+     * crear pausar y poder hacer más amigable la interacción con el usuario.
      */
     public Jugador(int numJugador) throws InterruptedException{
         System.out.println("Bienvenido al juego 'Jugador" + numJugador + "'!");
@@ -131,8 +132,10 @@ public class Jugador {
 
 
     /**
-     * 
-     * @throws InterruptedException
+     * Método llamado durante la construcción de un jugador el cual solicitará una opción
+     * para saber si los pokémon serán elegidos mediante la elección del jugador o aleatoriamente.
+     * @throws InterruptedException Avisa una posible interrupción la cual se requiere para poder
+     * crear pausar y poder hacer más amigable la interacción con el usuario.
      */
     public void setPokemones() throws InterruptedException{
         Menu menu = new Menu();
@@ -147,16 +150,17 @@ public class Jugador {
     }
 
     /**
-     * 
-     * @return
+     * Permite tener acceso a la lista de pokémon del jugador.
+     * @return Retorna una lista de instancias de tipo POKEMON, las cuales representan el equipo
+     * que tiene el jugador para combatir.
      */
     public ArrayList<Pokemon> getPokemones() {
         return pokemones;
     }
 
     /**
-     * 
-     * @param peleador
+     * Hace posible poder elegir un índice que represente al pokémon peleador del jugador que llame
+     * a este método.
      */
     public void setPeleador() {
         System.out.printf("Con que pokemon quieres comenzar el combate? (Elige con el numero)");
@@ -172,16 +176,17 @@ public class Jugador {
     }
 
     /**
-     * 
-     * @param peleador
+     * Permite asignar un índice que indique al pokémon peleador del jugador.
+     * @param peleador Valor de tipo entero que tomará el valor del índice que represente al pokémon 
+     * peleador de un jugador.
      */
     public void setPeleador(int peleador){
         this.peleador = peleador;
     }
 
     /**
-     * 
-     * @return
+     * Hace posible tener acceso al pokémon peleador del jugador que llama al método.
+     * @return Retorna una instancia de tipo POKEMON que representa al peleador del entrenador.
      */
     public Pokemon getPeleador(){
         return this.pokemones.get(this.peleador);

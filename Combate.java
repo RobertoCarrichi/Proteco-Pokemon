@@ -1,11 +1,43 @@
 import java.io.IOException;
 
+/**
+ * Clase que estará encargada de administrar las acciones que realiza cada jugador en su turno y
+ * la cuál estará reportando lo que suceda durante el combate a una instancia de tipo REPORTE.
+ */
 public class Combate {
+    /**
+     * Instancia que representa globalmente el reporte que estará guargando todo lo que pasa en el 
+     * combate.
+     */
     Reporte reporte = null;
+    
+    /**
+     * Instancia de tipo JUGADOR que representa al primer jugador registrado.
+     */
     Jugador jugador1 = null;
+    
+    /**
+     * Instancia de tipo JUGADOR que representa al segundo jugador registrado.
+     */
     Jugador jugador2 = null;
+    
+    /**
+     * Instancia encargada en presentar los menús al jugador en turno y en la solicitud de información
+     * desde el teclado.
+     */
     Menu menu = new Menu();
 
+    /******************************************
+     *              CONSTRUCTOR               *
+     ******************************************/
+
+    /**
+     * Permite inicializar a los dos jugadores que estarán interactuando durante el combate.
+     * @param jugador1 Representa al primer jugador registrado.
+     * @param jugador2 Representa al segundo jugador registrado.
+     * @throws IOException Avisa una posible interrupción la cual se requiere para poder crear
+     * el reporte que contenta el historial del combate.
+     */
     public Combate(Jugador jugador1, Jugador jugador2) throws IOException{
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
@@ -13,9 +45,11 @@ public class Combate {
     }
     
     /** 
-     * @throws InterruptedException
-     * @throws IOException
-     * Inicia el combate
+     * Método que indica el inicio del combate entre los dos jugadores presentados en el constructor.
+     * @throws InterruptedException Avisa una posible interrupción la cual se requiere para poder
+     * crear pausar y poder hacer más amigable la interacción con el usuario.
+     * @throws IOException Avisa una posible interrupción la cual se requiere para poder crear
+     * el reporte que contenta el historial del combate.
      */
     public void inicio() throws InterruptedException, IOException{
         System.out.println("\n\t\t##########################################");
@@ -92,10 +126,13 @@ public class Combate {
     
     
     /** 
-     * @param jugador
-     * @throws InterruptedException
-     * @throws IOException
-     * Asigna turno 1 o 2
+     * Muestra las opciones que tiene un jugador para realizar en un turno individual.
+     * @param jugador Requiere de un valor de tipo entero que exprese que jugador está utilizando
+     * su turno.
+     * @throws InterruptedException Avisa una posible interrupción la cual se requiere para poder
+     * crear pausar y poder hacer más amigable la interacción con el usuario.
+     * @throws IOException Avisa una posible interrupción la cual se requiere para poder crear
+     * el reporte que contenta el historial del combate.
      */
     public void ejecutarTurno(int jugador) throws InterruptedException, IOException{
         if ( jugador == 0 ) {
@@ -116,10 +153,14 @@ public class Combate {
     
     
     /** 
-     * @param jugador
-     * @param opcion
-     * @throws InterruptedException
-     * @throws IOException
+     * Realiza la ejecución de la elección realizada por el usuario en una ejecución previa del 
+     * método ejecutarTurno().
+     * @param jugador Requiere de una referencia que indique que jugador está en turno.
+     * @param opcion Representa la opción que eligió previamente en el método ejecutarTurno().
+     * @throws InterruptedException Avisa una posible interrupción la cual se requiere para poder
+     * crear pausar y poder hacer más amigable la interacción con el usuario.
+     * @throws IOException Avisa una posible interrupción la cual se requiere para poder crear
+     * el reporte que contenta el historial del combate.
      */
     public void ejecutarEleccion(int jugador, int opcion) throws InterruptedException, IOException {
         switch (opcion) {
