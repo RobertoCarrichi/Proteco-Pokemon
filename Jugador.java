@@ -176,7 +176,7 @@ public class Jugador {
         }
         System.out.println();
         for (int i = 0; i < pokemones.size(); i++) {
-            System.out.printf("Vida: %d\t\t",pokemones.get(i).getVida());
+            System.out.printf("Vida: %3d\t\t",pokemones.get(i).getVida());
         }
         System.out.println();
         for (int i = 0; i < pokemones.size(); i++) {

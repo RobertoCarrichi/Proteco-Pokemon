@@ -225,9 +225,10 @@ public class Menu{
 	 * @return
 	 */
 	public int elegirPeleador(Jugador jugador){
+		jugador.mostrarPokemon();
 		System.out.println("\n\tEste es tu peleador actual: \n");
 		jugador.getPeleador().mostrarInfo();
-		System.out.printf("Con que pokemon quieres pelear ahora? Elige con el numero: \n ~> ");
+		System.out.printf("Con que pokemon quieres pelear ahora? Elige con el numero, si todos se encuentran debilitados elige un cero.\n ~> ");
 		int peleador = scan.nextInt();
 		if ( peleador == 1 || peleador == 2 || peleador == 3 || peleador == 4 || peleador == 5 || peleador == 6 ) {
 			if ( jugador.getPokemones().get(peleador-1).getEstado() ){
@@ -236,9 +237,31 @@ public class Menu{
 				System.out.println("\n\tAY NO! Has elegido un pokemon debilitado, deberas elegir otro pokemon.\n");
 				elegirPeleador(jugador);
 			}
-		} else {
+		}else if( peleador == 0 ){
+			System.out.println("Todos los pokemon de "+jugador.getNombre().toUpperCase()+" han quedado fuera de juego ):\n");
+		}else {
 			System.out.println("\n\tAY NO! Has elegido un pokemon que no existe, elige con cuidado.\n");
 			elegirPeleador(jugador);
+		}
+		return -1;
+	}
+
+	/**
+	 * 
+	 * @param jugador Dice que jugador elegirá el ataque.
+	 * @return
+	 */
+	public int elegirAtaque(Jugador jugador){
+		System.out.println("Los ataques disponibles de tu pokemon actual son: ");
+		System.out.println("    1 : "+jugador.getPeleador().getMovimiento(0));
+		System.out.println("    2 : "+jugador.getPeleador().getMovimiento(1));
+		System.out.printf("\nElige el ataque mediante el numero:\n ~> ");
+		int ataque = scan.nextInt();
+		if (ataque == 1 || ataque == 2) {
+			return ataque - 1;
+		} else {
+			System.out.println("\tCHISPAS! Has elegido un ataque que tu pokemon no tiene. Vuelve a elegir.\n");
+			elegirAtaque(jugador);
 		}
 		return -1;
 	}
