@@ -2,6 +2,7 @@ import java.io.FileWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
 /**
  * Esta clase será la que estará almacenando 
  * toda la información que involucre el proceso de un
@@ -39,8 +40,14 @@ public class Reporte {
      */
     int totalCambios;
 
+    /**
+     * 
+     */
     String nombreArchivo;
 
+    /**
+     * 
+     */
     File reporteFinal = null;
 
     /******************************************
@@ -101,7 +108,6 @@ public class Reporte {
         reportar.write("#\tTermino el turno de "+jugador.getNombre().toUpperCase()+".\n#\n");
         reportar.close();
     }
-    
     
     /**
      * 
@@ -176,7 +182,6 @@ public class Reporte {
         reportar.write("#\tAhora "+jugador.getPeleador().apodo.toUpperCase()+" es el pokemon con el que estara luchando "+jugador.getNombre().toUpperCase()+"\n#\n");
         reportar.close();
     }
-    
     
     /**
      * 

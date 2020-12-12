@@ -1,18 +1,41 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * 
+ */
 public class Jugador {
     /******************************************
      *         INSTANCIAS DE APOYO            *
      ******************************************/
+
+    /**
+     * 
+     */
     Scanner scan = new Scanner(System.in);
 
     /******************************************
      *        ATRIBUTOS DE INSTANCIA          *
      ******************************************/
+
+    /**
+     * 
+     */
     private String nombre;
+    
+    /**
+     * 
+     */
     private ArrayList<Pokemon> pokemones = new ArrayList<Pokemon>();
+    
+    /**
+     * 
+     */
     private ArrayList<Pocion> pociones = new ArrayList<Pocion>();
+    
+    /**
+     * 
+     */
     private int peleador;
 
     /******************************************
@@ -147,11 +170,8 @@ public class Jugador {
 
     /**
      * 
+     * @return
      */
-    // public int getPeleador() {
-	// 	return peleador;
-	// }
-
     public Pokemon getPeleador(){
         return this.pokemones.get(this.peleador);
     }

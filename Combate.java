@@ -1,16 +1,31 @@
 import java.io.IOException;
 
+/**
+ * 
+ */
 public class Combate {
     Reporte reporte = null;
     Jugador jugador1 = null;
     Jugador jugador2 = null;
     Menu menu = new Menu();
 
+    /**
+     * 
+     * @param jugador1
+     * @param jugador2
+     * @throws IOException
+     */
     public Combate(Jugador jugador1, Jugador jugador2) throws IOException{
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
         this.reporte = new Reporte(this.jugador1,this.jugador2);
     }
+
+    /**
+     * 
+     * @throws InterruptedException
+     * @throws IOException
+     */
     public void inicio() throws InterruptedException, IOException{
         System.out.println("\n\t\t##########################################");
         System.out.println("\t\t#         COMIENZA EL COMBATE            #");
@@ -84,6 +99,12 @@ public class Combate {
         }
     }
     
+    /**
+     * 
+     * @param jugador
+     * @throws InterruptedException
+     * @throws IOException
+     */
     public void ejecutarTurno(int jugador) throws InterruptedException, IOException{
         if ( jugador == 0 ) {
             this.jugador1.mostrarPociones();   
@@ -101,6 +122,13 @@ public class Combate {
         Thread.sleep(2000);
     }
     
+    /**
+     * 
+     * @param jugador
+     * @param opcion
+     * @throws InterruptedException
+     * @throws IOException
+     */
     public void ejecutarEleccion(int jugador, int opcion) throws InterruptedException, IOException {
         switch (opcion) {
             case 1:
@@ -309,6 +337,5 @@ public class Combate {
                 System.out.println("HA OCURRIDO UN ERROR FATAL!");
                 break;
         }
-
     }
 }
