@@ -1,6 +1,5 @@
 import java.io.FileWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -16,47 +15,54 @@ public class Reporte {
      ******************************************/
 
     /**
-     * 
+     * Indica todos los turnos que hubo durante todo el combate.
      */
     int turnosTotales;
 
     /**
-     * 
+     * Indica todos los ataques que fueron realizados globalmente.
      */
     int ataquesRealizados;
 
     /**
-     * 
+     * Representa la cantidad total de pociones cuando de los dos jugadores decidió utilizar una poción.
      */
     int pocionesUtilizadas;
 
     /**
-     * 
+     * Hace referencia a la cantidad de pokémon debilitados durante el combate.
      */
     int totalBajas;
 
     /**
-     * 
+     * Indica la cantidad de cambios de pokémon peleador que ocurrieron durante todo el combate.
      */
     int totalCambios;
 
     /**
-     * 
+     * Hace referencia al nombre que tiene el archivo donde se estará guardando todo lo que sucede
+     * en el combate.
      */
     String nombreArchivo;
 
     /**
-     * 
+     * Una instancia de tipo FILE que representará a el archivo como tal y en el cual se estarán
+     * añadiendo todos los reportes.
      */
     File reporteFinal = null;
 
     /******************************************
      *              CONSTRUCTOR               *
      ******************************************/
+
     /**
-     * 
-     * @param jugador1
-     * @param jugador2
+     * Constructor dedicado a inicializar el nombre del archivo y para reportar a los dos jugadores
+     * que estarán combatiendo.
+     * @param jugador1 Parámetro de tipo JUGADOR del cual se requerirá su nombre para el archivo de
+     * reportes.
+     * @param jugador2 Se trata del segundo jugador registrado al inicio del pograma.
+     * @throws IOException Avisa una posible interrupción la cual se requiere para poder crear
+     * el reporte que contenta el historial del combate.
      */
     public Reporte(Jugador jugador1, Jugador jugador2) throws IOException{
         this.turnosTotales = 0;
@@ -73,9 +79,30 @@ public class Reporte {
      *************************************************/
 
     /**
-     * 
+     * Reporta a los jugadores que presentarán el combate.
+     * @param jugador1 Hará referecia al primer jugador registrado.
+     * @param jugador2 Hará referencia al segundo jugador registrado el comienzo del pograma.
+     * @throws IOException Avisa una posible interrupción la cual se requiere para poder crear
+     * el reporte que contenta el historial del combate. 
      */
-    public void reportarTurnoInicial(Jugador jugador) throws IOException, FileNotFoundException {
+    public void reportarJugadores(Jugador jugador1, Jugador jugador2) throws IOException {
+        System.out.println("\t#### Los jugadores que van a luchar son: "+jugador1.getNombre().toUpperCase()+" y "+jugador2.getNombre().toUpperCase()+" ####\n");
+        
+        FileWriter reportar = new FileWriter(reporteFinal, true);
+        reportar.write("######################################################################################################\n");
+        reportar.write("#\n#\t#### Los jugadores que van a luchar son: "+jugador1.getNombre().toUpperCase()+" y "+jugador2.getNombre().toUpperCase()+" ####\n#\n");
+        reportar.close();
+    }
+
+
+    /**
+     * Reporta el jugador que tuvo la suerte de tener el primer turno en todo el combate.
+     * @param jugador Parámetro de tipo JUGADOR que representa a el jugador que ganó el primer
+     * turno en el combate.
+     * @throws IOException Avisa una posible interrupción la cual se requiere para poder crear
+     * el reporte que contenta el historial del combate.
+     */
+    public void reportarTurnoInicial(Jugador jugador) throws IOException {
         System.out.println("\tEl primer turno en el combate es para "+jugador.getNombre().toUpperCase()+"!\n");
         
         FileWriter reportar = new FileWriter(reporteFinal, true);
@@ -84,8 +111,10 @@ public class Reporte {
     }
     
     /**
-     * 
-     * @param jugador
+     * Reporta al jugador del cuál comenzará su turno.
+     * @param jugador Se debe indicar al jugador que iniciará su turno.
+     * @throws IOException Avisa una posible interrupción la cual se requiere para poder crear
+     * el reporte que contenta el historial del combate.
      */
     public void reportarInicioTurno(Jugador jugador) throws IOException{
         System.out.println("\tEs turno de "+jugador.getNombre().toUpperCase()+"!\n");
@@ -97,9 +126,10 @@ public class Reporte {
     }
     
     /**
-     * 
-     * @param jugador
-     * @throws IOException
+     * Reporta al jugador del cuál terminará su turno.
+     * @param jugador Se debe indicar al jugador que terminará su turno.
+     * @throws IOException Avisa una posible interrupción la cual se requiere para poder crear
+     * el reporte que contenta el historial del combate.
      */
     public void reportarFinTurno(Jugador jugador) throws IOException{
         System.out.println("\tTermino el turno de "+jugador.getNombre().toUpperCase()+".");
@@ -110,24 +140,13 @@ public class Reporte {
     }
     
     /**
-     * 
-     * @param jugador1
-     * @param jugador2
-     */
-    public void reportarJugadores(Jugador jugador1, Jugador jugador2) throws IOException {
-        System.out.println("\t#### Los jugadores que van a luchar son: "+jugador1.getNombre().toUpperCase()+" y "+jugador2.getNombre().toUpperCase()+" ####\n");
-        
-        FileWriter reportar = new FileWriter(reporteFinal, true);
-        reportar.write("######################################################################################################\n");
-        reportar.write("#\n#\t#### Los jugadores que van a luchar son: "+jugador1.getNombre().toUpperCase()+" y "+jugador2.getNombre().toUpperCase()+" ####\n#\n");
-        reportar.close();
-    }
-    
-    /**
-     * 
-     * @param jugador
-     * @param pocion
-     * @param pokemon
+     * Método que reporta que una poción ha sido utilizada, hará que se sume en una unidad al total de
+     * pociones utilizadas durante el combate.
+     * @param jugador Se debe indicar el jugador que está tratando de utilizar la poción.
+     * @param pocion Referencia a la poción que se utilizará.
+     * @param pokemon Referencia al pokémon que recibirá el beneficio de la poción.
+     * @throws IOException Avisa una posible interrupción la cual se requiere para poder crear
+     * el reporte que contenta el historial del combate.
      */
     public void reportarPocion(Jugador jugador, Pocion pocion, Pokemon pokemon) throws IOException{
         System.out.println("\t"+jugador.getNombre().toUpperCase()+" ha utilizado una pocion de "+pocion.getTipo().toUpperCase()+" en "+pokemon.apodo.toUpperCase()+"\n");
@@ -139,9 +158,13 @@ public class Reporte {
     }
     
     /**
-     * 
-     * @param jugador1
-     * @param jugador2
+     * Método que reporta que se presenció un ataque entre los jugadores.
+     * @param jugador1 Referencia al jugador que será "atacante".
+     * @param jugador2 Referencia al jugador que será "defensor".
+     * @param ataque Referencia a el ataque que el jugador eligió antes de ejecutar el ataque.
+     * @param danio Valor que indica la cantidad de daño que va a recibir el pokémon.
+     * @throws IOException Avisa una posible interrupción la cual se requiere para poder crear
+     * el reporte que contenta el historial del combate.
      */
     public void reportarAtaque(Jugador jugador1, Jugador jugador2, int ataque, int danio) throws IOException {
         FileWriter reportar = new FileWriter(reporteFinal, true);
@@ -157,9 +180,13 @@ public class Reporte {
     }
     
     /**
-     * 
-     * @param atacante
-     * @param defensor
+     * Reporta que se precensió un imprevisto, ya que el pokémon defensor resultó ser más veloz
+     * y le ganó el turno al pokémon atacante.
+     * @param atacante Instancia de tipo POKÉMON que representa al pokémon que resultará dañado 
+     * por ser más lento que el defensor.
+     * @param defensor Referencia que representa al pokémon que será el que realiza el ataque.
+     * @throws IOException Avisa una posible interrupción la cual se requiere para poder crear
+     * el reporte que contenta el historial del combate.
      */
     public void reportarImprevisto(Pokemon atacante, Pokemon defensor) throws IOException{
         System.out.println("\tOH NO! "+defensor.apodo.toUpperCase()+" es más veloz que "+atacante.apodo.toUpperCase()+", le quito el turno y ataco antes!\n");
@@ -171,9 +198,10 @@ public class Reporte {
 
 
     /**
-     * 
-     * @param jugador
-     * @throws IOException
+     * Reporta en pantalla y en el documento que hubo un cambio de pokémon peleador.
+     * @param jugador Debe inidicarse al jugador que hizo el cambio.
+     * @throws IOException Avisa una posible interrupción la cual se requiere para poder crear
+     * el reporte que contenta el historial del combate.
      */
     public void reportarCambioPeleador(Jugador jugador) throws IOException {
         System.out.println("\tAhora "+jugador.getPeleador().apodo.toUpperCase()+" es el pokemon con el que estara luchando "+jugador.getNombre().toUpperCase()+"\n");
@@ -184,9 +212,10 @@ public class Reporte {
     }
     
     /**
-     * 
-     * @param jugador
-     * @throws IOException
+     * Reporta que un pokemón quedó debilitado después de un ataque durante el combate.
+     * @param jugador Representa al jugador que perdió a su pokémon peleador.
+     * @throws IOException Avisa una posible interrupción la cual se requiere para poder crear
+     * el reporte que contenta el historial del combate.
      */
     public void reportarBaja(Jugador jugador) throws IOException{
         System.out.println("\tEl pokemon "+jugador.getPeleador().apodo.toUpperCase()+" de "+jugador.getNombre().toUpperCase()+" ha quedado fuera de combate!\n");
@@ -198,9 +227,11 @@ public class Reporte {
     }
     
     /**
-     * 
-     * @param perdedor
-     * @throws IOException
+     * Reporta el ABANDONO de un jugador de la partida!
+     * @param perdedor Se requiere una instancia de tipo JUGADOR que represente al jugador que quiso
+     * returarse.
+     * @throws IOException Avisa una posible interrupción la cual se requiere para poder crear
+     * el reporte que contenta el historial del combate.
      */
     public void reportarAbandono(Jugador perdedor) throws IOException {
         System.out.println("\n\t"+perdedor.getNombre().toUpperCase()+" SE HA RENDIDO!\n");
@@ -211,9 +242,10 @@ public class Reporte {
     }    
     
     /**
-     * 
-     * @param jugador
-     * @throws IOException
+     * Reporta que un jugador a salido vistorioso del combate.
+     * @param jugador Se utiliza para saber qué jugador es el que ha ganado el
+     * @throws IOException Avisa una posible interrupción la cual se requiere para poder crear
+     * el reporte que contenta el historial del combate.
      */
     public void reportarVictoria(Jugador jugador) throws IOException {
         System.out.println("\tHA TERMINADO EL COMBATE!\n");
@@ -228,8 +260,10 @@ public class Reporte {
     }
     
     /**
-     * 
-     * @throws IOException
+     * Se trata del último reporte que se añade al combate, pues esta será el que indique los
+     * resultados globales durante todo el combate (en pantalla y en el documento).
+     * @throws IOException Avisa una posible interrupción la cual se requiere para poder crear
+     * el reporte que contenta el historial del combate.
      */
     public void reportarFinal() throws IOException  {
         System.out.println("\n\t\t### ESTE ES EL RESUMEN DE LA PELEA ###\n");
