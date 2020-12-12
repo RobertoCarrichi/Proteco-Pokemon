@@ -9,7 +9,7 @@ public class Pocion{
 	private String tipo;
 	
 	/**
-	 * 
+	 * Indica el stado de la poción a través de un booleano.
 	 */
 	private boolean estado;
 
@@ -25,18 +25,38 @@ public class Pocion{
 		this.estado = false;
 	}
 
+	
+	/** 
+	 * Otiene tipo de poción.
+	 * @return String
+	 */
 	public String getTipo() {
 		return this.tipo;
 	}
 
+	
+	/** 
+	 * Asigna el tipo de poción.
+	 * @param tipo
+	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
+	
+	/** 
+	 * Obtiene el estado de la poción a través de un booleando.
+	 * @return boolean
+	 */
 	public boolean getEstado() {
 		return estado;
 	}
 
+	
+	/** 
+	 * Indica el estado de la poción a través de un booleando.
+	 * @param estado
+	 */
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
