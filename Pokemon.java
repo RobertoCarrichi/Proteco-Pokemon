@@ -39,7 +39,7 @@ public class Pokemon {
     /**
      * Se trata del nombre del movimiento base que tiene el pokémon para poder luchar.
      */
-    private String movimiento;
+    private String [] movimientos = new String[2];
 
     /**
      * Indica si se encuentra en buen estado (true) o en mal estado (false).
@@ -87,29 +87,33 @@ public class Pokemon {
      * Permite asignar un movimiento base al pokémon.
      * @param movimiento Representa el nombre que tendrá el movimiento base.
      */
-    public void setMovimiento() {
+    public void setMovimientos() {
         if(this.identificarTipo(this.apodo).equals("Agua")){
-            this.movimiento1 = "Burbuja";
-            this.movimiento2 = "Hidrocañón";
+            this.movimientos[0] = "Burbuja";
+            this.movimientos[1] = "Hidrocañón";
         }else if(this.identificarTipo(this.apodo).equals("Fuego")){
-            this.movimiento = "Nitrocarga";
-            anillo igneo
+            this.movimientos[0] = "Nitrocarga";
+            this.movimientos[1] = "Anillo Igneo";
         }else if(this.identificarTipo(this.apodo).equals("Hierba")){
-            hoja aguda
-            this.movimiento = "Planta feroz";
+            this.movimientos[0] = "Hoja aguda";
+            this.movimientos[1] = "Planta feroz";
         }else if(this.identificarTipo(this.apodo).equals("Eléctrico")){
-            this.movimiento = "Puño trueno";
-            voltio cruel
+            this.movimientos[0] = "Puño trueno";
+            this.movimientos[1] = "Voltio cruel";
         }
-        return "No registrado";
     }
 
     /**
      * Permitirá el acceso al atributo "movimiento" de un pokémon.
      * @return Retorna una cadena que indica el nombre con el que está asociado el pokémon.
      */
-    public String getMovimiento() {
-        return movimiento;
+    public String getMovimiento(int opcion) {
+        if (opcion == 0) {
+            return this.movimientos[0];
+        } else {
+            return this.movimientos[1];   
+        }
+
     }
 
     /**
@@ -212,6 +216,7 @@ public class Pokemon {
         this.setAtaque(aleatorio(150,200));
         this.setDefensa(aleatorio(150,200));
         this.setVelocidad(aleatorio(100,150));
+        this.setMovimientos();
         this.setEstado(true);
     }
 
@@ -351,12 +356,12 @@ public class Pokemon {
         System.out.println("   Ataque: "+this.ataque);
         System.out.println("   Defensa: "+this.defensa);
         System.out.println("   Velocidad: "+this.velocidad);
-        System.out.println("   Movimiento: "+this.movimiento);
+        System.out.println("   Ataques: "+this.movimientos[0]);
+        System.out.println("            "+this.movimientos[1]);
         System.out.println();
     }
 
     public void atacar(Pokemon oponente){
-        System.out.println(calcularMultiplicadorElemental(oponente));
         int danio = getAtaque() - oponente.getDefensa();
         double multiplicador = calcularMultiplicadorElemental(oponente);
         if (danio>0) {

@@ -50,7 +50,7 @@ public class Menu{
 		if (aleatoriamente) {
 			System.out.println("\n\t#######################################################");
 			System.out.println("\t#  COMIENZA EL PROCESO DE ELECCION DE TU EQUIPO DE    #");
-			System.out.println("\t#                      POKEMON                        #");
+			System.out.println("\t#            POKEMON DE FORMA ALEATORIA               #");
 			System.out.println("\t#                                                     #");
 			System.out.println("\t# Se elegirán aleatoriamente y al final se mostrarán  #");
 			System.out.println("\t# los pokemon que conforman a tu equipo.              #");
@@ -166,7 +166,7 @@ public class Menu{
 			System.out.println("   1. Realiza un ataque.");
 			System.out.println("   2. Usar pocion.");
 			System.out.println("   3. Cambiar pokemon.");
-			System.out.println("   4. Rendirse.");
+			System.out.println("   4. Rendirse.\n");
 			System.out.printf(" Elige con el numero: \n ~> ");
 			opcion = scan.nextInt();
 			if ( opcion==1 || opcion==2 || opcion==3 || opcion==4 || opcion==5 ) {
@@ -226,7 +226,7 @@ public class Menu{
 	 */
 	public int elegirPeleador(Jugador jugador){
 		System.out.println("\n\tEste es tu peleador actual: \n");
-		jugador.getPokemones().get(jugador.getPeleador()).mostrarInfo();
+		jugador.getPeleador().mostrarInfo();
 		System.out.printf("Con que pokemon quieres pelear ahora? Elige con el numero: \n ~> ");
 		int peleador = scan.nextInt();
 		if ( peleador == 1 || peleador == 2 || peleador == 3 || peleador == 4 || peleador == 5 || peleador == 6 ) {

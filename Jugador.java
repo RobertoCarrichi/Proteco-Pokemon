@@ -101,8 +101,7 @@ public class Jugador {
     public void setPokemones() throws InterruptedException{
         Menu menu = new Menu();
         System.out.println(" Cada jugador tiene derecho de tener 6 pokemon en su equipo, quieres elegirlos?");
-        System.out.println(" Se elegira aleatoriamente el equipo si escribes 'No' y se tomara esta opcion si dejas la respuesta en blanco. [Si/No] (No)");
-        System.out.printf(" \n ~> ");
+        System.out.printf(" Se elegira aleatoriamente el equipo si escribes 'No' y se tomara esta opcion si dejas la respuesta en blanco. [Si/No] (No)\n ~> ");
         String eleccion = scan.nextLine();
         if ( ! eleccion.isEmpty() && (eleccion.charAt(0) == 'S' || eleccion.charAt(0) == 's')){
             menu.eleccionPokemon(this, false);
@@ -124,7 +123,7 @@ public class Jugador {
      * @param peleador
      */
     public void setPeleador() {
-        System.out.println("Con que pokemon quieres comenzar el combate? (Elige con el numero)");
+        System.out.printf("Con que pokemon quieres comenzar el combate? (Elige con el numero)");
         System.out.printf("\n ~> ");
         int eleccion = scan.nextInt();
         if (eleccion == 1 || eleccion == 2 || eleccion == 3 || eleccion == 4 || eleccion == 5 || eleccion == 6) {
@@ -147,10 +146,13 @@ public class Jugador {
     /**
      * 
      */
-    public int getPeleador() {
-		return peleador;
-	}
+    // public int getPeleador() {
+	// 	return peleador;
+	// }
 
+    public Pokemon getPeleador(){
+        return this.pokemones.get(this.peleador);
+    }
 
     /************************************************
      *            MÉTODOS DE INSTANCIA              *
@@ -187,6 +189,14 @@ public class Jugador {
         System.out.println();
         for (int i = 0; i < pokemones.size(); i++) {
             System.out.printf("Velocidad: %d\t\t",pokemones.get(i).getVelocidad());
+        }
+        System.out.println();
+        for (int i = 0; i < pokemones.size(); i++) {
+            System.out.printf("Ataques: %s\t",pokemones.get(i).getMovimiento(0));
+        }
+        System.out.println();
+        for (int i = 0; i < pokemones.size(); i++) {
+            System.out.printf("         %s\t",pokemones.get(i).getMovimiento(1));
         }
         System.out.println();
         for (int i = 0; i < pokemones.size(); i++) {

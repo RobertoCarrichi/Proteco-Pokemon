@@ -92,27 +92,25 @@ public class Reporte {
     
     /**
      * 
-     * @param jugador
-     * @param pokemon
-     * @param oponente
+     * @param jugador1
+     * @param jugador2
      */
-    public void reportarAtaque(Jugador jugador, Pokemon pokemon, Pokemon oponente){
-        System.out.println("\tEl pokemon "+pokemon.apodo.toUpperCase()+" de "+jugador.getNombre().toUpperCase()+" ha atacado a "+oponente.apodo.toUpperCase()+"\n");   
+    public void reportarAtaque(Jugador jugador1, Jugador jugador2){
+        System.out.println("\tEl pokemon "+jugador1.getPeleador().apodo.toUpperCase()+" de "+jugador1.getNombre().toUpperCase()+" ha atacado a "+jugador2.getPeleador().apodo.toUpperCase()+"\n");   
         this.ataquesRealizados+=1;
     }
     
     public void reportarCambioPeleador(Jugador jugador){
-        System.out.println("\tAhora "+jugador.getPokemones().get(jugador.getPeleador()).apodo.toUpperCase()+" es el pokemon con el que estara luchando "+jugador.getNombre().toUpperCase()+"\n");
+        System.out.println("\tAhora "+jugador.getPeleador().apodo.toUpperCase()+" es el pokemon con el que estara luchando "+jugador.getNombre().toUpperCase()+"\n");
     }
 
 
     /**
      * 
      * @param jugador
-     * @param pokemon
      */
-    public void reportarBaja(Jugador jugador, Pokemon pokemon){
-        System.out.println("\tEl pokemon "+pokemon.apodo.toUpperCase()+" de "+jugador.getNombre().toUpperCase()+" ha quedado fuera de combate!\n");
+    public void reportarBaja(Jugador jugador){
+        System.out.println("\tEl pokemon "+jugador.getPeleador().apodo.toUpperCase()+" de "+jugador.getNombre().toUpperCase()+" ha quedado fuera de combate!\n");
         this.totalBajas+=1;
     }
 

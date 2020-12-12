@@ -60,7 +60,7 @@ public class Combate {
              * SI ALGUNO DE LOS DOS ENTRENADORES YA NO PUEDE CONTINUAR.          * 
              *********************************************************************/
             if ( jugador1.estadoEquipo() && jugador2.estadoEquipo() ) {
-                System.out.println("El combate continúa!");
+                System.out.println("\tEl combate continúa!\n");
             } else if(! jugador1.estadoEquipo()){
                 System.out.println("\t"+jugador1.getNombre().toUpperCase()+" ya no puede continuar.\n");
                 reporte.reportarVictoria(jugador2);
@@ -91,54 +91,67 @@ public class Combate {
                 if ( jugador == 0 ) {
                     System.out.println("\tSe realizara un combate entre los siguientes pokemon: \n");
                     System.out.println("\t  ATACANTE\t\t  DEFENSOR\n");
-                    System.out.printf("\t- %s -\t\t- %s -\n",this.jugador1.getPokemones().get(this.jugador1.getPeleador()).apodo.toUpperCase(),this.jugador2.getPokemones().get(this.jugador2.getPeleador()).apodo.toUpperCase());
-                    System.out.printf("\tTipo: %s\t\tVida: %s\n",this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getTipo(),this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getTipo());
-                    System.out.printf("\tVida: %d\t\tVida: %d\n",this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getVida(),this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getVida());
-                    System.out.printf("\tAtaque: %d\t\tAtaque: %d\n",this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getAtaque(),this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getAtaque());
-                    System.out.printf("\tDefensa: %d\t\tDefensa: %d\n",this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getDefensa(),this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getDefensa());
-                    System.out.printf("\tVelocidad: %d\t\tVelocidad: %d\n\n",this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getVelocidad(),this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getVelocidad());
-                    this.jugador1.getPokemones().get(this.jugador1.getPeleador()).atacar(this.jugador2.getPokemones().get(this.jugador2.getPeleador()));
-                    this.reporte.reportarAtaque(this.jugador1, this.jugador1.getPokemones().get(this.jugador1.getPeleador()), this.jugador2.getPokemones().get(this.jugador2.getPeleador()));
-                    if (this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getVida() <= 0 ){
+                    System.out.printf("\t- %s -\t\t- %s -\n",this.jugador1.getPeleador().apodo.toUpperCase(),this.jugador2.getPeleador().apodo.toUpperCase());
+                    System.out.printf("\tTipo: %s\t\tVida: %s\n",this.jugador1.getPeleador().getTipo(),this.jugador2.getPeleador().getTipo());
+                    System.out.printf("\tVida: %d\t\tVida: %d\n",this.jugador1.getPeleador().getVida(),this.jugador2.getPeleador().getVida());
+                    System.out.printf("\tAtaque: %d\t\tAtaque: %d\n",this.jugador1.getPeleador().getAtaque(),this.jugador2.getPeleador().getAtaque());
+                    System.out.printf("\tDefensa: %d\t\tDefensa: %d\n",this.jugador1.getPeleador().getDefensa(),this.jugador2.getPeleador().getDefensa());
+                    System.out.printf("\tVelocidad: %d\t\tVelocidad: %d\n",this.jugador1.getPeleador().getVelocidad(),this.jugador2.getPeleador().getVelocidad());
+                    System.out.printf("\tAtaques: %s\tAtaques: %s\n",this.jugador1.getPeleador().getMovimiento(0),this.jugador2.getPeleador().getMovimiento(0));
+                    System.out.printf("\t         %s\t         %s\n\n",this.jugador1.getPeleador().getMovimiento(1),this.jugador2.getPeleador().getMovimiento(1));
+                    // Se ejecuta el ataque
+                    this.jugador1.getPeleador().atacar(this.jugador2.getPeleador());
+                    // Se reporta el ataque realizado
+                    this.reporte.reportarAtaque(this.jugador1, this.jugador2);
+
+                    if (this.jugador2.getPeleador().getVida() <= 0 ){
                         // Si entra aquí significa que el pokémon se ha debilidado.
-                        this.jugador2.getPokemones().get(this.jugador2.getPeleador()).setVida(0);
-                        this.reporte.reportarBaja(this.jugador2, this.jugador2.getPokemones().get(this.jugador2.getPeleador()));
+                        this.jugador2.getPeleador().setVida(0);
+                        // Se reporta la baja
+                        this.reporte.reportarBaja(this.jugador2);
                     }
                     // Deben volver a mostrarse a los pokémon
                     System.out.println("\tAsi quedaron los pokemones despues del combate: \n");
                     System.out.println("\t  ATACANTE\t\t  DEFENSOR\n");
-                    System.out.printf("\t- %s -\t\t- %s -\n",this.jugador1.getPokemones().get(this.jugador1.getPeleador()).apodo.toUpperCase(),this.jugador2.getPokemones().get(this.jugador2.getPeleador()).apodo.toUpperCase());
-                    System.out.printf("\tTipo: %s\t\tVida: %s\n",this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getTipo(),this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getTipo());
-                    System.out.printf("\tVida: %d\t\tVida: %d\n",this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getVida(),this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getVida());
-                    System.out.printf("\tAtaque: %d\t\tAtaque: %d\n",this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getAtaque(),this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getAtaque());
-                    System.out.printf("\tDefensa: %d\t\tDefensa: %d\n",this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getDefensa(),this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getDefensa());
-                    System.out.printf("\tVelocidad: %d\t\tVelocidad: %d\n\n",this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getVelocidad(),this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getVelocidad());
+                    System.out.printf("\t- %s -\t\t- %s -\n",this.jugador1.getPeleador().apodo.toUpperCase(),this.jugador2.getPeleador().apodo.toUpperCase());
+                    System.out.printf("\tTipo: %s\t\tTipo: %s\n",this.jugador1.getPeleador().getTipo(),this.jugador2.getPeleador().getTipo());
+                    System.out.printf("\tVida: %d\t\tVida: %d\n",this.jugador1.getPeleador().getVida(),this.jugador2.getPeleador().getVida());
+                    System.out.printf("\tAtaque: %d\t\tAtaque: %d\n",this.jugador1.getPeleador().getAtaque(),this.jugador2.getPeleador().getAtaque());
+                    System.out.printf("\tDefensa: %d\t\tDefensa: %d\n",this.jugador1.getPeleador().getDefensa(),this.jugador2.getPeleador().getDefensa());
+                    System.out.printf("\tVelocidad: %d\t\tVelocidad: %d\n",this.jugador1.getPeleador().getVelocidad(),this.jugador2.getPeleador().getVelocidad());
+                    System.out.printf("\tAtaques: %s\tAtaques: %s\n",this.jugador1.getPeleador().getMovimiento(0),this.jugador2.getPeleador().getMovimiento(0));
+                    System.out.printf("\t         %s\t         %s\n\n",this.jugador1.getPeleador().getMovimiento(1),this.jugador2.getPeleador().getMovimiento(1));
                 } else {
                     System.out.println("\tSe realizara un combate entre los siguientes pokemon: \n");
                     System.out.println("\t  ATACANTE\t\t  DEFENSOR\n");
-                    System.out.printf("\t- %s -\t\t- %s -\n",this.jugador2.getPokemones().get(this.jugador2.getPeleador()).apodo.toUpperCase(),this.jugador1.getPokemones().get(this.jugador1.getPeleador()).apodo.toUpperCase());
-                    System.out.printf("\tTipo: %s\t\tTipo: %s\n",this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getTipo(),this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getTipo());
-                    System.out.printf("\tVida: %d\t\tVida: %d\n",this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getVida(),this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getVida());
-                    System.out.printf("\tAtaque: %d\t\tAtaque: %d\n",this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getAtaque(),this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getAtaque());
-                    System.out.printf("\tDefensa: %d\t\tDefensa: %d\n",this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getDefensa(),this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getDefensa());
-                    System.out.printf("\tVelocidad: %d\t\tVelocidad: %d\n\n",this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getVelocidad(),this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getVelocidad());
-                    this.jugador2.getPokemones().get(this.jugador2.getPeleador()).atacar(this.jugador2.getPokemones().get(this.jugador2.getPeleador()));
-                    this.reporte.reportarAtaque(this.jugador2, this.jugador2.getPokemones().get(this.jugador2.getPeleador()), this.jugador1.getPokemones().get(this.jugador1.getPeleador()));
+                    System.out.printf("\t- %s -\t\t- %s -\n",this.jugador2.getPeleador().apodo.toUpperCase(),this.jugador1.getPeleador().apodo.toUpperCase());
+                    System.out.printf("\tTipo: %s\t\tTipo: %s\n",this.jugador2.getPeleador().getTipo(),this.jugador1.getPeleador().getTipo());
+                    System.out.printf("\tVida: %d\t\tVida: %d\n",this.jugador2.getPeleador().getVida(),this.jugador1.getPeleador().getVida());
+                    System.out.printf("\tAtaque: %d\t\tAtaque: %d\n",this.jugador2.getPeleador().getAtaque(),this.jugador1.getPeleador().getAtaque());
+                    System.out.printf("\tDefensa: %d\t\tDefensa: %d\n",this.jugador2.getPeleador().getDefensa(),this.jugador1.getPeleador().getDefensa());
+                    System.out.printf("\tVelocidad: %d\t\tVelocidad: %d\n",this.jugador2.getPeleador().getVelocidad(),this.jugador1.getPeleador().getVelocidad());
+                    System.out.printf("\tAtaques: %s\tAtaques: %s\n",this.jugador2.getPeleador().getMovimiento(0),this.jugador1.getPeleador().getMovimiento(0));
+                    System.out.printf("\t         %s\t         %s\n\n",this.jugador2.getPeleador().getMovimiento(1),this.jugador1.getPeleador().getMovimiento(1));
+                    
+                    this.jugador2.getPeleador().atacar(this.jugador2.getPeleador());
+                    this.reporte.reportarAtaque(this.jugador2, this.jugador2);
 
                     // Se debe verificar si el pokémon del oponente no quedó debilitado.
-                    if (this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getVida() <= 0 ){
-                        this.jugador1.getPokemones().get(this.jugador1.getPeleador()).setVida(0);
-                        this.reporte.reportarBaja(this.jugador1, this.jugador1.getPokemones().get(this.jugador1.getPeleador()));
+                    if (this.jugador1.getPeleador().getVida() <= 0 ){
+                        this.jugador1.getPeleador().setVida(0);
+                        this.reporte.reportarBaja(this.jugador1);
                     }
 
                     System.out.println("\tAsi quedaron los pokemones despues del combate: \n");
                     System.out.println("\t  ATACANTE\t\t  DEFENSOR\n");
-                    System.out.printf("\t- %s -\t\t- %s -\n",this.jugador2.getPokemones().get(this.jugador2.getPeleador()).apodo.toUpperCase(),this.jugador1.getPokemones().get(this.jugador1.getPeleador()).apodo.toUpperCase());
-                    System.out.printf("\tTipo: %s\t\tTipo: %s\n",this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getTipo(),this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getTipo());
-                    System.out.printf("\tVida: %d\t\tVida: %d\n",this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getVida(),this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getVida());
-                    System.out.printf("\tAtaque: %d\t\tAtaque: %d\n",this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getAtaque(),this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getAtaque());
-                    System.out.printf("\tDefensa: %d\t\tDefensa: %d\n",this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getDefensa(),this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getDefensa());
-                    System.out.printf("\tVelocidad: %d\t\tVelocidad: %d\n\n",this.jugador2.getPokemones().get(this.jugador2.getPeleador()).getVelocidad(),this.jugador1.getPokemones().get(this.jugador1.getPeleador()).getVelocidad());
+                    System.out.printf("\t- %s -\t\t- %s -\n",this.jugador2.getPeleador().apodo.toUpperCase(),this.jugador1.getPeleador().apodo.toUpperCase());
+                    System.out.printf("\tTipo: %s\t\tTipo: %s\n",this.jugador2.getPeleador().getTipo(),this.jugador1.getPeleador().getTipo());
+                    System.out.printf("\tVida: %3d\t\tVida: %3d\n",this.jugador2.getPeleador().getVida(),this.jugador1.getPeleador().getVida());
+                    System.out.printf("\tAtaque: %3d\t\tAtaque: %3d\n",this.jugador2.getPeleador().getAtaque(),this.jugador1.getPeleador().getAtaque());
+                    System.out.printf("\tDefensa: %3d\t\tDefensa: %3d\n",this.jugador2.getPeleador().getDefensa(),this.jugador1.getPeleador().getDefensa());
+                    System.out.printf("\tVelocidad: %3d\t\tVelocidad: %3d\n",this.jugador2.getPeleador().getVelocidad(),this.jugador1.getPeleador().getVelocidad());
+                    System.out.printf("\tAtaques: %s\tAtaques: %s\n",this.jugador2.getPeleador().getMovimiento(0),this.jugador1.getPeleador().getMovimiento(0));
+                    System.out.printf("\t         %s\t         %s\n\n",this.jugador2.getPeleador().getMovimiento(1),this.jugador1.getPeleador().getMovimiento(1));
                 }
                 break;
             case 2:
