@@ -81,7 +81,7 @@ public class Reporte {
      * @param jugador
      */
     public void reportarInicioTurno(Jugador jugador) throws IOException{
-        System.out.println("\tEs turno de "+jugador.getNombre().toUpperCase()+"!\n#\n");
+        System.out.println("\tEs turno de "+jugador.getNombre().toUpperCase()+"!\n");
         this.turnosTotales+=1;
         
         FileWriter reportar = new FileWriter(reporteFinal, true);
@@ -95,7 +95,7 @@ public class Reporte {
      * @throws IOException
      */
     public void reportarFinTurno(Jugador jugador) throws IOException{
-        System.out.println("\tTermino el turno de "+jugador.getNombre().toUpperCase()+".\n");
+        System.out.println("\tTermino el turno de "+jugador.getNombre().toUpperCase()+".");
         
         FileWriter reportar = new FileWriter(reporteFinal, true);
         reportar.write("#\tTermino el turno de "+jugador.getNombre().toUpperCase()+".\n#\n");
@@ -109,11 +109,11 @@ public class Reporte {
      * @param jugador2
      */
     public void reportarJugadores(Jugador jugador1, Jugador jugador2) throws IOException {
-        System.out.println("\t#### Los jugadores que van a luchar son: "+jugador1.getNombre().toUpperCase()+" y "+jugador2.getNombre().toUpperCase()+"####\n#\n");
+        System.out.println("\t#### Los jugadores que van a luchar son: "+jugador1.getNombre().toUpperCase()+" y "+jugador2.getNombre().toUpperCase()+" ####\n");
         
         FileWriter reportar = new FileWriter(reporteFinal, true);
         reportar.write("######################################################################################################\n");
-        reportar.write("#\t#### Los jugadores que van a luchar son: "+jugador1.getNombre().toUpperCase()+" y "+jugador2.getNombre().toUpperCase()+"####\n#\n");
+        reportar.write("#\n#\t#### Los jugadores que van a luchar son: "+jugador1.getNombre().toUpperCase()+" y "+jugador2.getNombre().toUpperCase()+" ####\n#\n");
         reportar.close();
     }
     
@@ -201,7 +201,7 @@ public class Reporte {
         System.out.println("\n\t"+perdedor.getNombre().toUpperCase()+" SE HA RENDIDO!\n");
 
         FileWriter reportar = new FileWriter(reporteFinal, true);
-        reportar.write("#\n\t"+perdedor.getNombre().toUpperCase()+" SE HA RENDIDO!\n#\n");
+        reportar.write("#\n#\t"+perdedor.getNombre().toUpperCase()+" SE HA RENDIDO!\n#\n");
         reportar.close();
     }    
     
@@ -231,7 +231,7 @@ public class Reporte {
         System.out.println("\tSe realizaron "+this.turnosTotales+" turnos durante todo el combate.\n");
         System.out.println("\tSe realizaron "+this.totalCambios+" cambios.\n");
         System.out.println("\tSe utilizaron "+this.pocionesUtilizadas+" pociones y hubo "+this.ataquesRealizados+" ataques.\n");
-        System.out.println("\tSe debilitaron "+this.totalBajas+" pokemon.\n#\n");
+        System.out.println("\tSe debilitaron "+this.totalBajas+" pokemon.\n\n");
         
         FileWriter reportar = new FileWriter(reporteFinal, true);
         reportar.write("#\n#\t\t### ESTE ES EL RESUMEN DE LA PELEA ###\n#\n");
