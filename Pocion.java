@@ -57,7 +57,6 @@ public class Pocion{
 	public boolean getEstado() {
 		return estado;
 	}
-
 	
 	/** 
 	 * Permite asignar el estado de la poción, durante la construcción o después de ser utilizada.

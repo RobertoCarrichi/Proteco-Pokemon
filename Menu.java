@@ -7,7 +7,6 @@ import java.util.Scanner;
  * de instancias como el equipo de pokémon de un jugador.
  */
 public class Menu{
-
 	/******************************************
      *         INSTANCIAS DE APOYO            *
      ******************************************/

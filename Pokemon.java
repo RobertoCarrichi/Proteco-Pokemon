@@ -3,7 +3,6 @@
  * de forma individual.
  */
 public class Pokemon {
-
     /******************************************
      *        ATRIBUTOS DE INSTANCIA          *
      ******************************************/

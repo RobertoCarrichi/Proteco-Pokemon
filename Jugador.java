@@ -130,7 +130,6 @@ public class Jugador {
         return pociones;
     }
 
-
     /**
      * Método llamado durante la construcción de un jugador el cual solicitará una opción
      * para saber si los pokémon serán elegidos mediante la elección del jugador o aleatoriamente.
