@@ -30,8 +30,6 @@ public class Combate {
          * El combate acaba hasta que alguno de los dos equipos se encuentre debilidado.     
          */
         while ( jugador1.estadoEquipo() && jugador2.estadoEquipo() ){
-            int opcion;
-
             /* 
                 Cada ciclo se manejará como UN BLOQUE DE DOS TURNOS, uno para cada jugador.
             */
@@ -82,16 +80,43 @@ public class Combate {
                 */
                 break;
             case 2:
-                
+                /*
+                    El jugador a elegido utilizar una poción, entonces se mostrarán los pokémon
+                    para que pueda elegir alguno de ellos.
+                */
+                int pocionElegida;
+                int pokemonElegido; 
+                if (jugador==0) {
+                    pocionElegida = this.menu.elegirPocion(this.jugador1);
+                    pokemonElegido = this.menu.elegirPokemon(this.jugador1); 
+                    this.jugador1.getPociones().get(pocionElegida).usar(this.jugador1.getPokemones().get(pokemonElegido));
+                    this.reporte.reportarPocion(this.jugador1, this.jugador1.getPociones().get(pocionElegida), this.jugador1.getPokemones().get(pokemonElegido));
+                } else {
+                    pocionElegida = this.menu.elegirPocion(this.jugador2);
+                    pokemonElegido = this.menu.elegirPokemon(this.jugador2); 
+                    this.jugador2.getPociones().get(pocionElegida).usar(this.jugador2.getPokemones().get(pokemonElegido));
+                    this.reporte.reportarPocion(this.jugador2, this.jugador2.getPociones().get(pocionElegida), this.jugador2.getPokemones().get(pokemonElegido));
+                }
                 break;
             case 3:
-                
+                /*
+                    El jugador a elegido ver sus pociones, así que podrá volver a elegir
+                    que hacer (para volverlo a hacer se aplica recursividad).
+                */
                 break;
             case 4:
-                
+                /*
+                    El jugador a elegido ver sus pokémon, por lo que después de verlos
+                    podrá volver a elegir una acción (se aplicará recursividad).
+                */
                 break;
             case 5:
-                
+                /*
+                    El jugador a elegido rendirse.
+                */
+                break;
+            default:
+                System.out.println("HA OCURRIDO UN ERROR FATAL!");
                 break;
         }
     }

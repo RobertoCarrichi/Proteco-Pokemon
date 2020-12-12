@@ -3,10 +3,15 @@ public class Pocion{
      *        ATRIBUTOS DE INSTANCIA          *
      ******************************************/
 	
-	 /**
+	/**
 	 * Indica el tipo de poción, puede ser de salud, ataque o defensa.
 	 */
-	public final String tipo;
+	private String tipo;
+	
+	/**
+	 * 
+	 */
+	private String estado;
 
     /******************************************
      *              CONSTRUCTOR               *
@@ -17,6 +22,23 @@ public class Pocion{
 	 */
 	public Pocion(String tipo){
 		this.tipo = tipo;
+		this.setEstado("SIN UTILIZAR");
+	}
+
+	public String getTipo() {
+		return this.tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	/**

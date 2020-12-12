@@ -2,8 +2,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-
-
 /**
  * Proporciona al usuario los distintos menús de elección durante el combate y construcción
  * de instancias como el equipo de pokémon de un jugador.
@@ -157,6 +155,9 @@ public class Menu{
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public int mostrarOpcionesTurno(){
 		int opcion; 
 		boolean exit = false;
@@ -164,17 +165,58 @@ public class Menu{
 			System.out.println(" Que deseas hacer?");
 			System.out.println("   1. Realiza un ataque.");
 			System.out.println("   2. Usar pocion.");
-			System.out.println("   3. Usar pocion.");
-			System.out.println("   4. Ver pociones.");
-			System.out.println("   5. Ver pokemon.");
+			System.out.println("   3. Ver pociones.");
+			System.out.println("   4. Ver pokemon.");
+			System.out.println("   5. Rendirse.");
 			System.out.printf(" Elige con el numero: \n ~> ");
 			opcion = scan.nextInt();
-			if ( opcion==1 || opcion==2 || opcion==3 || opcion==4 || opcion==6) {
+			if ( opcion==1 || opcion==2 || opcion==3 || opcion==4 || opcion==5 ) {
 				exit = true;
 			} else {
 				System.out.println("\tCHISPAS! No has elegido una opcion permitida, intenta otra vez...");
 			}
 		}while(!exit);
 		return opcion;
+	}
+
+	/**
+	 * 
+	 * @param jugador
+	 * @return
+	 */
+	public int elegirPocion(Jugador jugador){
+		jugador.mostrarPociones();
+		System.out.printf("Elige mediante el numero de pocion: \n ~> ");
+		int pocion = scan.nextInt();
+		if ( pocion == 1 || pocion == 2 || pocion == 3 || pocion == 4 || pocion == 5 || pocion == 6 ) {
+			if (jugador.getPociones().get(pocion).getEstado().equals("SIN UTILIZAR")){
+				return pocion;
+			} else {
+				System.out.println("\n\tOH NO! No has elegido una pocion que ya has utilizado, elige una sin utilizar. \n");
+				elegirPocion(jugador);			
+			}
+		} else {
+			System.out.println("\n\tOH NO! No has elegido un numero de pocion valido, intenta otra vez. \n");
+			elegirPocion(jugador);
+		}
+		return -1;
+	}
+
+	/**
+	 * 
+	 * @param jugador
+	 * @return
+	 */
+	public int elegirPokemon(Jugador jugador){
+		jugador.mostrarPokemon();
+		System.out.printf("Elige mediante el numero de pokemon: \n ~> ");
+		int pokemon = scan.nextInt();
+		if ( pokemon == 1 || pokemon == 2 || pokemon == 3 || pokemon == 4 || pokemon == 5 || pokemon == 6 ) {
+			return pokemon;
+		} else {
+			System.out.println("\n\tOH NO! No has elegido un numero de pocion valido, intenta otra vez. \n");
+			elegirPokemon(jugador);
+		}
+		return -1;
 	}
 }

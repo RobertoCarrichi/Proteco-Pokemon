@@ -85,7 +85,7 @@ public class Reporte {
      */
     public void reportarPocion(Jugador jugador, Pocion pocion, Pokemon pokemon){
         System.out.printf(" *** -> ");
-        System.out.println(jugador.getNombre().toUpperCase()+" ha utilizado una pocion de "+pocion.tipo.toUpperCase()+" en "+pokemon.apodo.toUpperCase());
+        System.out.println(jugador.getNombre().toUpperCase()+" ha utilizado una pocion de "+pocion.getTipo().toUpperCase()+" en "+pokemon.apodo.toUpperCase());
         this.pocionesUtilizadas+=1;
     }
     
