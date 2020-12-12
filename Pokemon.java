@@ -86,8 +86,7 @@ public class Pokemon {
     }
     
     /**
-     * Permite asignar un movimiento base al pokémon.
-     * @param movimiento Representa el nombre que tendrá el movimiento base.
+     * Permite asignar movimientos de tipo base y cargados al pokémon durante su construcción.
      */
     public void setMovimientos() {
         if(this.identificarTipo(this.apodo).equals("Agua")){
@@ -107,6 +106,8 @@ public class Pokemon {
 
     /**
      * Permitirá el acceso al atributo "movimiento" de un pokémon.
+     * @param opcion Requiere de un valor de tipo entero para saber si se trata de llamar
+     * al ataque base o al ataque cargado.
      * @return Retorna una cadena que indica el nombre con el que está asociado el pokémon.
      */
     public String getMovimiento(int opcion) {

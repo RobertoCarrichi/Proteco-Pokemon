@@ -272,6 +272,8 @@ public class Jugador {
 
     /**
      * Permite añadir pokémon a la lista del jugador externamente.
+     * 
+     * @param pokemon Se indica el pokémon que será añadido a la lista.
      */
     public void addPokemon(Pokemon pokemon){
         this.pokemones.add(pokemon);

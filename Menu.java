@@ -178,6 +178,8 @@ public class Menu{
 
 	/**
 	 * Método que muestra las opciones que tiene un jugador al inicial su turno.
+	 * @return Se retorna el valor que representa a la opción elegida por el usuario, la cual 
+	 * expresa que quiere hacer en su turno actual.
 	 */
 	public int mostrarOpcionesTurno(){
 		int opcion = 1; 
