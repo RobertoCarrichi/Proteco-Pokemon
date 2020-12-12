@@ -6,7 +6,7 @@ public class Pocion{
 	 /**
 	 * Indica el tipo de poción, puede ser de salud, ataque o defensa.
 	 */
-	private String tipo;
+	public final String tipo;
 
     /******************************************
      *              CONSTRUCTOR               *
@@ -16,7 +16,7 @@ public class Pocion{
 	 * @param tipo
 	 */
 	public Pocion(String tipo){
-		this.tipo=tipo;
+		this.tipo = tipo;
 	}
 
 	/**

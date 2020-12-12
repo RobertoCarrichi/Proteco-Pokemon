@@ -201,6 +201,7 @@ public class Pokemon {
         this.setAtaque(aleatorio(150,200));
         this.setDefensa(aleatorio(150,200));
         this.setVelocidad(aleatorio(100,200));
+        this.setEstado(true);
     }
 
     /**

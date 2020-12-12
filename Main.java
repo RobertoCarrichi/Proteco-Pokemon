@@ -1,9 +1,4 @@
 public class Main{
-	/**
-	*	Esta clase será la que estará almacenando 
-	*	toda la información que involucre el proceso de un
-	*	combate entre jugadores.
-	*/
 	public static void main(String[] args) {
 		System.out.println("\n\t############### INICIANDO POKEJUEGO ############### \n");
 		try {
@@ -24,8 +19,8 @@ public class Main{
             /******************************* **************** 
 			*               INICIA EL COMBATE!              *
 			*************************************************/
-            Combate.inicio(jugador1,jugador2);
-            
+            Combate combate = new Combate(jugador1,jugador2);
+            combate.inicio();
 		}catch (Exception e) {
 			System.out.println("Al parecer tenemos problemas al cargar contenido del juego.");
 			e.printStackTrace();

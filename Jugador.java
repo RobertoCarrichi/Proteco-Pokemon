@@ -32,7 +32,7 @@ public class Jugador {
         setNombre();
         setPociones();
         setPokemones();
-        System.out.println(this.nombre+" está listo/a para luchar!");
+        System.out.println("\t"+this.nombre+" está listo/a para luchar!");
     }
 
     /************************************************
@@ -105,8 +105,13 @@ public class Jugador {
         }else{
             menu.eleccionPokemon(this, true);
         }
-        System.out.println(" \n\tEste es tu equipo: ");
-        mostrarPokemon();
+
+        /* 
+            Se mostrará el equipo que tiene el jugador.
+FALTA DAR MEJOR FORMATO
+        */
+        // System.out.println(" \n\tEste es tu equipo: ");
+        // mostrarPokemon();
     }
 
     public ArrayList<Pokemon> getPokemones() {

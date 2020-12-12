@@ -156,4 +156,25 @@ public class Menu{
 			}
 		}
 	}
+
+	public int mostrarOpcionesTurno(){
+		int opcion; 
+		boolean exit = false;
+		do{
+			System.out.println(" Que deseas hacer?");
+			System.out.println("   1. Realiza un ataque.");
+			System.out.println("   2. Usar pocion.");
+			System.out.println("   3. Usar pocion.");
+			System.out.println("   4. Ver pociones.");
+			System.out.println("   5. Ver pokemon.");
+			System.out.printf(" Elige con el numero: \n ~> ");
+			opcion = scan.nextInt();
+			if ( opcion==1 || opcion==2 || opcion==3 || opcion==4 || opcion==6) {
+				exit = true;
+			} else {
+				System.out.println("\tCHISPAS! No has elegido una opcion permitida, intenta otra vez...");
+			}
+		}while(!exit);
+		return opcion;
+	}
 }
