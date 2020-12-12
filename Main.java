@@ -1,9 +1,10 @@
 /**
- * 
+ * Clase inicial que contiene al método MAIN, por lo que de esta parte todo el programa.
  */
 public class Main{
 	/**
-	 * 
+	 * Método principal del programa para que comience, es de tipo estático para que no deba
+	 * crearse una instancia para utilizarlo.
 	 */
 	public static void main(String[] args) {
 		System.out.println("\n\t############### INICIANDO POKEJUEGO ############### \n");

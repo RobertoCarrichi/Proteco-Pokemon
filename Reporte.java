@@ -244,6 +244,7 @@ public class Reporte {
         reportar.write("#\tSe realizaron "+this.totalCambios+" cambios.\n");
         reportar.write("#\tSe utilizaron "+this.pocionesUtilizadas+" pociones y hubo "+this.ataquesRealizados+" ataques.\n");
         reportar.write("#\tSe debilitaron "+this.totalBajas+" pokemon.\n#\n");
+        reportar.write("######################################################################################################\n");
         reportar.close();
     }
 }

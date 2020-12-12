@@ -2,7 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * 
+ * Clase que representa la estructura básica de un jugador (llamado en el jugo como un "entrenador").
+ * Esta indica los atributos que tiene y los métodos que puede utilizar.
  */
 public class Jugador {
     /******************************************
@@ -10,7 +11,8 @@ public class Jugador {
      ******************************************/
 
     /**
-     * 
+     * Una instancia de apoyo para que el usuario pueda elegir opciones al momento de la construcción
+     * de algún jugador.
      */
     Scanner scan = new Scanner(System.in);
 
@@ -19,22 +21,26 @@ public class Jugador {
      ******************************************/
 
     /**
-     * 
+     * Cadena de caracteres que expresa el nombre que el usuario asignó durante la "construcción" de 
+     * un jugador. Este será el que se exprese en múltiples ocasiones durante la creación del reporte
+     * del combate y estará en el nombre del archivo para que el nombre no se repita con otro archivo.
      */
     private String nombre;
     
     /**
-     * 
+     * Lista que almacena los pokémon de equipo que tendrá el jugador durante el combate.
      */
     private ArrayList<Pokemon> pokemones = new ArrayList<Pokemon>();
     
     /**
-     * 
+     * Lista de pociones que almacena elementos de tipo POCION y serán estos elementos de los que podrá
+     * hacer uso el jugador para ayudar a sus pokémon durante el combate.
      */
     private ArrayList<Pocion> pociones = new ArrayList<Pocion>();
     
     /**
-     * 
+     * Valor entero que hará referencia al índice al que será nombrado como "peleador" del entrenador
+     * hasta que decida cambiarlo.
      */
     private int peleador;
 
@@ -123,6 +129,11 @@ public class Jugador {
         return pociones;
     }
 
+
+    /**
+     * 
+     * @throws InterruptedException
+     */
     public void setPokemones() throws InterruptedException{
         Menu menu = new Menu();
         System.out.println(" Cada jugador tiene derecho de tener 6 pokemon en su equipo, quieres elegirlos?");

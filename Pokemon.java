@@ -1,3 +1,7 @@
+/**
+ * Clase que presenta toda la esctructura que tiene un pokémon, expresando sus atributos y métodos
+ * de forma individual.
+ */
 public class Pokemon {
 
     /******************************************
@@ -46,8 +50,6 @@ public class Pokemon {
      */
     private boolean estado; 
 
-//AÚN FALTA DEFINIR LOS MOVIMIENTOS DE CADA POKEMON
-    
     /******************************************
      *              CONSTRUCTOR               *
      ******************************************/
@@ -366,6 +368,14 @@ public class Pokemon {
         System.out.println();
     }
 
+    /**
+     * Permite ejecutar un ataque desde la instancia que llame a este método hacia un oponente
+     * dado como parámetro y con un ataque elegido previamene.
+     * @param oponente Instancia de tipo JUGADOR la cual representa al entrenador enemigo.
+     * @param ataqueElegido Valor entero que indica uno de los dos ataques que tiene disponible cada pokémon.
+     * Está representado por un 1 y un 0, donde el cero hace referencia al ataque base y el uno a un ataque cargado.
+     * @return Retorna el daño que será aplicado al pokémon del oponente.
+     */
     public int atacar(Jugador oponente, int ataqueElegido){
         oponente.getPeleador().getVida();
         int danioAplicado;
@@ -398,6 +408,12 @@ public class Pokemon {
         return danioAplicado;
     }
 
+    /**
+     * Indica el estado del pokémon que llama a la función y si la vida de este es menor a 0 se le
+     * asignará un valor que represente que el pokémon se encuentra debilitado.
+     * @return Retorna el estado del pokémon, donde un "true" indica que está en condiciones de
+     * luchar y un "false" cuando no es así.
+     */
     public boolean estaDebilitado(){
         if( this.getVida() <= 0 ){
             this.setEstado(false);
