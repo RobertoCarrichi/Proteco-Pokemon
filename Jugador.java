@@ -36,6 +36,8 @@ public class Jugador {
         setPokemones();
         mostrarPokemon();
         setPeleador();
+        System.out.println("\tGuardando datos...\n");
+        Thread.sleep(4000);
         System.out.println("\t"+this.getNombre().toUpperCase()+" está listo/a para luchar!\n");
     }
 

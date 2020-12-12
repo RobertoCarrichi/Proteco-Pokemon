@@ -3,17 +3,17 @@ public class Main{
 		System.out.println("\n\t############### INICIANDO POKEJUEGO ############### \n");
 		try {
 			System.out.println("Estamos preparando todo...");
-			// Thread.sleep(3000);
+			Thread.sleep(3000);
 			System.out.println("LISTO! Es momento de comenzar!");
-			// Thread.sleep(1500);
+			Thread.sleep(1500);
 			System.out.println("Comenzaremos por la creacion de los dos jugadores que van a combatir...");
-			// Thread.sleep(1800);
+			Thread.sleep(1800);
 			System.out.println();
 			/*************************************************************** 
 			* INICIA LA CREACION Y ASIGNACION DE POKEMON PARA CADA JUGADOR *
 			****************************************************************/
 			Jugador jugador1 = new Jugador(1);
-			// Thread.sleep(1650);
+			Thread.sleep(1650);
             Jugador jugador2 = new Jugador(2);
 
             /************************************************ 
@@ -26,5 +26,4 @@ public class Main{
 			e.printStackTrace();
 		}
 	}
-
 }

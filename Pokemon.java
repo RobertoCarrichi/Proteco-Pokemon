@@ -374,7 +374,6 @@ public class Pokemon {
             danioAplicado = (int)( ( getAtaque() - oponente.getPeleador().getDefensa() )* calcularMultiplicadorElemental(oponente.getPeleador()) );
             if( getAtaque() - oponente.getPeleador().getDefensa() <= 0 ){
                 // Si el ataque menos la defensa en menor a 0 el pokémon no recibe daño.
-                System.out.println("\t"+oponente.getPeleador().apodo.toUpperCase()+" no recibio danio!\n");
             }else if ( danioAplicado >= oponente.getPeleador().getVida() ) {
                 // Si el daño que se aplicará es mayor o igual a la vida del oponente este se debilitará.
                 oponente.getPeleador().setVida(0);
@@ -386,7 +385,6 @@ public class Pokemon {
             danioAplicado = getAtaque() - oponente.getPeleador().getDefensa();
             if( danioAplicado <= 0 ){
                 // Si el ataque menos la defensa en menor a 0 el pokémon no recibe daño.
-                System.out.println("\n"+oponente.getPeleador().apodo.toUpperCase()+" no recibio danio!");
             }else if ( ( getAtaque() - oponente.getPeleador().getDefensa() ) >= oponente.getPeleador().getVida() ) {
                 // Si el daño que se aplicará es mayor o igual a la vida del oponente este se debilitará.
                 oponente.getPeleador().setVida(0);

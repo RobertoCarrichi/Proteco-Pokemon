@@ -26,8 +26,10 @@ public class Combate {
 
         if (turno==0) {
             this.reporte.reportarTurnoInicial(jugador1);
+            Thread.sleep(1500);
         } else {
             this.reporte.reportarTurnoInicial(jugador2);
+            Thread.sleep(1500);
         }
 
         /* 
@@ -40,20 +42,24 @@ public class Combate {
             if(turno==0){
                 // El turno es para el jugador1
                 this.reporte.reportarInicioTurno(this.jugador1);
+                Thread.sleep(1500);
                 ejecutarTurno(0);
-                this.reporte.reportarFinTurno(this.jugador1);
                 /*            ^   
                               |   
                             Representa el jugador que ejecutará alguna acción.
                              0 -> jugador 1
                              1 -> jugador 2
                 */
+                this.reporte.reportarFinTurno(this.jugador1);
+                Thread.sleep(1500);
                 turno = 1; // Indica quién le toca el siguiente turno.
             }else{
                 // El turno es para el jugador2
                 this.reporte.reportarInicioTurno(this.jugador2);
+                Thread.sleep(1500);
                 ejecutarTurno(1);
                 this.reporte.reportarFinTurno(this.jugador2);
+                Thread.sleep(1500);
                 turno = 0;
             }
 
@@ -63,26 +69,36 @@ public class Combate {
              *********************************************************************/
             if ( jugador1.estadoEquipo() && jugador2.estadoEquipo() ) {
                 // El combate continúa
+                System.out.println("\n\tComenzara el siguiente turno en breve...\n");
+                Thread.sleep(4000);
             } else if(! jugador1.estadoEquipo()){
                 System.out.println("\t"+jugador1.getNombre().toUpperCase()+" ya no puede continuar.\n");
+                Thread.sleep(2000);
                 reporte.reportarVictoria(jugador2);
             }else{
                 System.out.println("\t"+jugador2.getNombre().toUpperCase()+" ya no puede continuar.\n");
+                Thread.sleep(2000);
                 reporte.reportarVictoria(jugador1);
+                Thread.sleep(2000);
             }
         }
     }
-
+    
     public void ejecutarTurno(int jugador) throws InterruptedException, IOException{
         if ( jugador == 0 ) {
             this.jugador1.mostrarPociones();   
+            Thread.sleep(2000);
             this.jugador1.mostrarPokemon();
+            Thread.sleep(2000);
         } else {
             this.jugador2.mostrarPociones();
+            Thread.sleep(2000);
             this.jugador2.mostrarPokemon();
+            Thread.sleep(2000);
         }
         int opcion = menu.mostrarOpcionesTurno();
         ejecutarEleccion(jugador, opcion);
+        Thread.sleep(2000);
     }
     
     public void ejecutarEleccion(int jugador, int opcion) throws InterruptedException, IOException {
@@ -110,14 +126,28 @@ public class Combate {
                     System.out.printf("\tEstado: %s\t\tEstado: %s\n\n",this.jugador1.getPeleador().getEstado(),this.jugador2.getPeleador().getEstado());
                     
                     // Después de mostrar a los pokémon, debe elegir el jugador que ataque utilizar
-                    ataqueElegido = menu.elegirAtaque(this.jugador2);
-                    
-                    // Se ejecuta el ataque
-                    danioAplicado = this.jugador1.getPeleador().atacar(this.jugador2,ataqueElegido);
-                    System.out.println("\tAtacando...\n");
-                    Thread.sleep(1500);
-                    // Se reporta el ataque realizado
-                    this.reporte.reportarAtaque(this.jugador1, this.jugador2, ataqueElegido, danioAplicado);
+                    ataqueElegido = menu.elegirAtaque(this.jugador1);
+
+                    if (this.jugador1.getPeleador().getVelocidad() < this.jugador2.getPeleador().getVelocidad() ){
+                        // El peleador del jugador 1 es más lento que el del jugador 2.
+                        // Como es más lento, se informa que se el peleador del jugador 2 atacará.
+                        // Se ejecuta el ataque
+                        this.reporte.reportarImprevisto(this.jugador1.getPeleador(), this.jugador2.getPeleador());
+                        // Si le ganó el turno, solo puede ejecutar el ataque "BÁSICO"
+                        danioAplicado = this.jugador2.getPeleador().atacar(this.jugador1,0);
+                        System.out.println("\tAtacando...\n");
+                        Thread.sleep(1500);
+                            // Se reporta el ataque realizado
+                        this.reporte.reportarAtaque(this.jugador2, this.jugador1, 0, danioAplicado);
+                    } else {
+                        // Se ejecuta el ataque sin imprevistos
+                        danioAplicado = this.jugador1.getPeleador().atacar(this.jugador2,ataqueElegido);
+                        System.out.println("\tAtacando...\n");
+                        Thread.sleep(1500);
+                        // Se reporta el ataque realizado
+                        this.reporte.reportarAtaque(this.jugador1, this.jugador2, ataqueElegido, danioAplicado);
+                        Thread.sleep(2000);
+                    }
     
                     // Deben volver a mostrarse a los pokémon
                     System.out.println("\tAsi quedaron los pokemones despues del combate: \n");
@@ -137,7 +167,7 @@ public class Combate {
 
                         // Se reporta la baja
                         this.reporte.reportarBaja(this.jugador2);
-                        
+                        Thread.sleep(2000);
                         // Deberá elegir un nuevo pokemon para pelear
                         ejecutarEleccion(1, 3);
                     }
@@ -156,15 +186,28 @@ public class Combate {
                     
                     // Después de mostrar a los pokémon, debe elegir el jugador que ataque utilizar
                     ataqueElegido = menu.elegirAtaque(this.jugador2);
-    
-                    // Se ejecuta el ataque
-                    danioAplicado = this.jugador2.getPeleador().atacar(this.jugador1,ataqueElegido);
-
-                    System.out.println("\tAtacando...\n");
-                    Thread.sleep(1500);
                     
-                    // Se reporta el ataque.
-                    this.reporte.reportarAtaque(this.jugador2, this.jugador1, ataqueElegido, danioAplicado);
+                    if (this.jugador2.getPeleador().getVelocidad() < this.jugador1.getPeleador().getVelocidad() ){
+                        // El peleador del jugador 1 es más lento que el del jugador 2.
+                        // Como es más lento, se informa que se el peleador del jugador 2 atacará.
+                        // Se ejecuta el ataque
+                        this.reporte.reportarImprevisto(this.jugador2.getPeleador(), this.jugador1.getPeleador());
+                        // Si le ganó el turno, solo puede ejecutar el ataque "BÁSICO"
+                        danioAplicado = this.jugador1.getPeleador().atacar(this.jugador2,0);
+                        System.out.println("\tAtacando...\n");
+                        Thread.sleep(1500);
+                            // Se reporta el ataque realizado
+                        this.reporte.reportarAtaque(this.jugador1, this.jugador2, 0, danioAplicado);
+                        Thread.sleep(2000);
+                    } else {
+                        // Se ejecuta el ataque sin imprevistos
+                        danioAplicado = this.jugador2.getPeleador().atacar(this.jugador1,ataqueElegido);
+                        System.out.println("\tAtacando...\n");
+                        Thread.sleep(1500);
+                        // Se reporta el ataque realizado
+                        this.reporte.reportarAtaque(this.jugador2, this.jugador1, ataqueElegido, danioAplicado);
+                        Thread.sleep(2000);
+                    }
                     
                     System.out.println("\tAsi quedaron los pokemones despues del combate: \n");
                     System.out.println("\t  ATACANTE\t\t  DEFENSOR\n");
@@ -183,7 +226,7 @@ public class Combate {
                         // Si entra aquí significa que el pokémon se ha debilidado.
                         // Se reporta la baja
                         this.reporte.reportarBaja(this.jugador2);
-                        
+                        Thread.sleep(2000);
                         // Deberá elegir un nuevo pokemon para pelear
                         ejecutarEleccion(0, 3);
                     }
@@ -203,9 +246,10 @@ public class Combate {
                     pokemonElegido = this.menu.elegirPokemon(this.jugador1); 
                     this.jugador1.getPociones().get(pocionElegida-1).usar(this.jugador1.getPokemones().get(pokemonElegido-1));
                     System.out.println("\n Aplicando... \n");
-                    // Thread.sleep(1500);
+                    Thread.sleep(1500);
                     System.out.println(" Pocion aplicada con exito! \n");
                     this.reporte.reportarPocion(this.jugador1, this.jugador1.getPociones().get(pocionElegida-1), this.jugador1.getPokemones().get(pokemonElegido-1));
+                    Thread.sleep(2000);
                 } else {
                     System.out.println("\n     Comienza eligiendo la pocion que quieres utilizar: \n");
                     pocionElegida = this.menu.elegirPocion(this.jugador2);
@@ -213,9 +257,9 @@ public class Combate {
                     pokemonElegido = this.menu.elegirPokemon(this.jugador2);
                     this.jugador2.getPociones().get(pocionElegida-1).usar(this.jugador2.getPokemones().get(pokemonElegido-1));
                     System.out.println("\n Aplicando... \n");
-                    // Thread.sleep(1500);
-                    System.out.println("\n Pocion aplicada con exito! \n");
+                    Thread.sleep(1500);
                     this.reporte.reportarPocion(this.jugador2, this.jugador2.getPociones().get(pocionElegida-1), this.jugador2.getPokemones().get(pokemonElegido-1));
+                    Thread.sleep(2000);
                 }
                 break;
             case 3:
@@ -227,30 +271,38 @@ public class Combate {
                     peleador = this.menu.elegirPeleador(this.jugador1);
                     if (peleador != -1) {
                         this.jugador1.setPeleador(peleador);
+                        System.out.println("\tCambiando...\n");
+                        Thread.sleep(1500);
                         this.reporte.reportarCambioPeleador(this.jugador1);
+                        Thread.sleep(1500);
                     }
                 } else {
                     peleador = this.menu.elegirPeleador(this.jugador2);
                     if (peleador != -1) {
+                        System.out.println("\tCambiando...\n");
+                        Thread.sleep(1500);
                         this.jugador2.setPeleador(peleador);
                         this.reporte.reportarCambioPeleador(this.jugador2);
+                        Thread.sleep(1500);
                     }
                 }
                 break;
-            case 4:
+                case 4:
                 /*
-                    El jugador a elegido rendirse.
+                El jugador a elegido rendirse.
                 */
                 if ( jugador == 0 ) {
                     for ( Pokemon pokemon : this.jugador1.getPokemones() ) {
                         pokemon.setEstado(false);
                     }
                     this.reporte.reportarAbandono(this.jugador1);
+                    Thread.sleep(2000);
                 } else {
                     for ( Pokemon pokemon : this.jugador2.getPokemones() ) {
                         pokemon.setEstado(false);
                     }
                     this.reporte.reportarAbandono(this.jugador2);
+                    Thread.sleep(2000);
                 }
                 break;
             default:

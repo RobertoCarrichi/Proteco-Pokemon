@@ -107,8 +107,9 @@ public class Menu{
 			/* 
 				SE HAN TERMINADO DE ELEGIR POKEMON DE FORMA ALEATORIA.
 			*/
-			// Thread.sleep(3000);
+			Thread.sleep(3500);
 			System.out.println("Hemos terminado de elegir a tus pokemon!\n");
+			Thread.sleep(2500);
 		} else {
 			System.out.println("\n\t#######################################################");
 			System.out.println("\t#  COMIENZA EL PROCESO DE ELECCION DE TU EQUIPO DE    #");
@@ -119,8 +120,12 @@ public class Menu{
 			System.out.println("\t# se elegiran aleatoriamente para que exista igualdad #");
 			System.out.println("\t# de condiciones entre todos los pokemon.             #");
 			System.out.println("\t#######################################################\n");
+			System.out.println("\n\tEspero estes listo/a!\n");
+			Thread.sleep(6000);
+			System.out.println("\n\tEsto comienza ya!\n");
+			Thread.sleep(2000);
 			int elegidos=6;
-			for (int i = 0; i < 1; i++) {
+			for (int i = 0; i < 6; i++) {
 				boolean exit = false;
 				while (! exit) {
 					System.out.println("Elige uno de los siguientes nombres: ");
@@ -150,6 +155,14 @@ public class Menu{
 						*/
 						exit=true; 
 					}
+				}
+
+				if (i < 5) {
+					System.out.println("\n\tPasemos a la siguiente elección...\n");
+					Thread.sleep(2000);
+				}else{
+					System.out.println("\n\tHas terminado de elegir tus pokemon!\n");
+					Thread.sleep(2000);
 				}
 			}
 		}
