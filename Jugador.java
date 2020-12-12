@@ -13,6 +13,7 @@ public class Jugador {
     private String nombre;
     private ArrayList<Pokemon> pokemones = new ArrayList<Pokemon>();
     private ArrayList<Pocion> pociones = new ArrayList<Pocion>();
+    private int peleador;
 
     /******************************************
      *              CONSTRUCTOR               *
@@ -27,19 +28,22 @@ public class Jugador {
      *                   que tengan nombres distintos por defecto.
      */
     public Jugador(int numJugador) throws InterruptedException{
-        System.out.println("\nBienvenido al juego 'Jugador" + numJugador + "'!");
+        System.out.println("Bienvenido al juego 'Jugador" + numJugador + "'!");
         System.out.printf("Antes de todo, elige un mejor nombre:");
         setNombre();
         setPociones();
+        mostrarPociones();
         setPokemones();
-        System.out.println("\t"+this.nombre+" está listo/a para luchar!");
+        mostrarPokemon();
+        setPeleador();
+        System.out.println("\t"+this.getNombre().toUpperCase()+" está listo/a para luchar!\n");
     }
 
     /************************************************
      *              GETTERS Y SETTERS               *
      ************************************************/
 
-    /**
+	/**
      * Permite asignar un nombre a un jugador, no requiere de parámetros porque
      * mediante este mismo se hace el proceso de validación y asignación.
      */
@@ -52,7 +56,7 @@ public class Jugador {
                 this.nombre = null;
             }
         }
-        System.out.println("\n\tActualmente tu nombre de entrenador es: "+this.getNombre()+"\n");
+        System.out.println("\n\tActualmente tu nombre de entrenador es: "+this.getNombre().toUpperCase()+"\n");
         System.out.printf("Quieres cambiarlo? [Si/No] (No): \n ~> ");
         String eleccion = scan.nextLine();
         if ( ! eleccion.isEmpty() && (eleccion.charAt(0) == 'S' || eleccion.charAt(0) == 's')){
@@ -105,18 +109,48 @@ public class Jugador {
         }else{
             menu.eleccionPokemon(this, true);
         }
-
-        /* 
-            Se mostrará el equipo que tiene el jugador.
-FALTA DAR MEJOR FORMATO
-        */
-        // System.out.println(" \n\tEste es tu equipo: ");
-        // mostrarPokemon();
     }
 
+    /**
+     * 
+     * @return
+     */
     public ArrayList<Pokemon> getPokemones() {
         return pokemones;
     }
+
+    /**
+     * 
+     * @param peleador
+     */
+    public void setPeleador() {
+        System.out.println("Con que pokemon quieres comenzar el combate? (Elige con el numero)");
+        System.out.printf("\n ~> ");
+        int eleccion = scan.nextInt();
+        if (eleccion == 1 || eleccion == 2 || eleccion == 3 || eleccion == 4 || eleccion == 5 || eleccion == 6) {
+            System.out.println("\n\tSe ha asignado a "+pokemones.get(eleccion-1).apodo.toUpperCase()+" como el pokemon con el que luchara "+this.nombre.toUpperCase()+"\n");
+            this.peleador = eleccion-1;
+        } else {
+            System.out.println("\n\tOH NO! Has tenido un error al elegir un pokemon para pelear. Intenta otra vez.\n");
+            setPeleador();
+        }
+    }
+
+    /**
+     * 
+     * @param peleador
+     */
+    public void setPeleador(int peleador){
+        this.peleador = peleador;
+    }
+
+    /**
+     * 
+     */
+    public int getPeleador() {
+		return peleador;
+	}
+
 
     /************************************************
      *            MÉTODOS DE INSTANCIA              *
@@ -126,22 +160,66 @@ FALTA DAR MEJOR FORMATO
      * Muesta en consola el equipo de pokémon que tiene el jugador.
      */
     public void mostrarPokemon() {
-        for (Pokemon pokemon : pokemones) {
-            pokemon.mostrarInfo();
+        System.out.println("\t\t##### ESTE ES TU EQUIPO DE POKEMON #####\n");
+        for (int i = 0; i < pokemones.size(); i++) {
+            System.out.printf("[%d]\t\t\t",i+1);
         }
+        System.out.println();
+        for (int i = 0; i < pokemones.size(); i++) {
+            System.out.printf("- %s -\t\t",pokemones.get(i).apodo.toUpperCase());
+        }
+        System.out.println();
+        for (int i = 0; i < pokemones.size(); i++) {
+            System.out.printf("Tipo: %s\t\t",pokemones.get(i).getTipo());
+        }
+        System.out.println();
+        for (int i = 0; i < pokemones.size(); i++) {
+            System.out.printf("Vida: %d\t\t",pokemones.get(i).getVida());
+        }
+        System.out.println();
+        for (int i = 0; i < pokemones.size(); i++) {
+            System.out.printf("Ataque: %d\t\t",pokemones.get(i).getAtaque());
+        }
+        System.out.println();
+        for (int i = 0; i < pokemones.size(); i++) {
+            System.out.printf("Defensa: %d\t\t",pokemones.get(i).getDefensa());
+        }
+        System.out.println();
+        for (int i = 0; i < pokemones.size(); i++) {
+            System.out.printf("Velocidad: %d\t\t",pokemones.get(i).getVelocidad());
+        }
+        System.out.println();
+        for (int i = 0; i < pokemones.size(); i++) {
+            if (pokemones.get(i).getEstado()) {
+                System.out.printf("Estado: OK\t\t");
+            } else {
+                System.out.printf("Estado: Debilidado\t");
+            }
+        }
+        System.out.println("\n");
     }
 
     /**
      * Muestra las pociones que tiene disponibles para utilizar el jugador.
      */
     public void mostrarPociones() {
-        int cantidad = 1;
-        for (Pocion pocion : pociones) {
-            System.out.println("["+cantidad+"]");
-            pocion.info();
-            System.out.println();
-            cantidad+=1;
+        System.out.println("\t\t##### ESTE ES TU CONJUNTO DE POCIONES ACTUAL #####\n");
+        for (int i = 0; i < pociones.size(); i++) {
+            System.out.printf("[%d]\t\t\t",i+1);
         }
+        System.out.println();
+        for (int i = 0; i < pociones.size(); i++) {
+            System.out.printf("- %s -\t\t",pociones.get(i).getTipo().toUpperCase());
+        }
+        System.out.println();
+        for (int i = 0; i < pociones.size(); i++) {
+            if (pociones.get(i).getEstado()) {
+                System.out.printf("Estado: UTILIZADA\t");
+            } else {
+                System.out.printf("Estado: SIN UTILIZAR\t");
+            }
+        }
+        System.out.println("\n");
     }
 
     /**

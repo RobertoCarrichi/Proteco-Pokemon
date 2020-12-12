@@ -8,7 +8,7 @@ public class Main{
 			// Thread.sleep(1500);
 			System.out.println("Comenzaremos por la creacion de los dos jugadores que van a combatir...");
 			// Thread.sleep(1800);
-
+			System.out.println();
 			/*************************************************************** 
 			* INICIA LA CREACION Y ASIGNACION DE POKEMON PARA CADA JUGADOR *
 			****************************************************************/
@@ -16,7 +16,7 @@ public class Main{
 			// Thread.sleep(1650);
             Jugador jugador2 = new Jugador(2);
 
-            /******************************* **************** 
+            /************************************************ 
 			*               INICIA EL COMBATE!              *
 			*************************************************/
             Combate combate = new Combate(jugador1,jugador2);

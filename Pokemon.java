@@ -48,8 +48,6 @@ public class Pokemon {
 
 //AÚN FALTA DEFINIR LOS MOVIMIENTOS DE CADA POKEMON
     
-    int danio;
-
     /******************************************
      *              CONSTRUCTOR               *
      ******************************************/
@@ -89,8 +87,21 @@ public class Pokemon {
      * Permite asignar un movimiento base al pokémon.
      * @param movimiento Representa el nombre que tendrá el movimiento base.
      */
-    public void setMovimiento(String movimiento) {
-        this.movimiento = movimiento;
+    public void setMovimiento() {
+        if(this.identificarTipo(this.apodo).equals("Agua")){
+            this.movimiento1 = "Burbuja";
+            this.movimiento2 = "Hidrocañón";
+        }else if(this.identificarTipo(this.apodo).equals("Fuego")){
+            this.movimiento = "Nitrocarga";
+            anillo igneo
+        }else if(this.identificarTipo(this.apodo).equals("Hierba")){
+            hoja aguda
+            this.movimiento = "Planta feroz";
+        }else if(this.identificarTipo(this.apodo).equals("Eléctrico")){
+            this.movimiento = "Puño trueno";
+            voltio cruel
+        }
+        return "No registrado";
     }
 
     /**
@@ -197,10 +208,10 @@ public class Pokemon {
      * Asigna los valores iniciales que tendrá el pokemon al momento de su construcción.
      */
     public void asignarValores(){
-        this.setVida(aleatorio(150,250));
+        this.setVida(aleatorio(200,250));
         this.setAtaque(aleatorio(150,200));
         this.setDefensa(aleatorio(150,200));
-        this.setVelocidad(aleatorio(100,200));
+        this.setVelocidad(aleatorio(100,150));
         this.setEstado(true);
     }
 
@@ -287,36 +298,38 @@ public class Pokemon {
      * @return Retorna el equivalente al multiplicador que indicará si afectará más o menos a su oponente.
      */
     public double calcularMultiplicadorElemental(Pokemon oponente){
-        if (oponente.tipo.equals("Agua")) {
+        if (this.tipo.equals("Agua")) {
             /**
              * Se verifica si el tipo del pokemon de la instancia es favorable ante el tipo
              * del oponente.
              */
-            if (this.getTipo().equals("Hierba")||this.getTipo().equals("Eléctrico")) {
+            if (oponente.getTipo().equals("Fuego")) {
                 return 2;
-            }else if(this.getTipo().equals("Agua")||this.getTipo().equals("Fuego")){
+            }else if(oponente.getTipo().equals("Agua")||oponente.getTipo().equals("Hierba")){
                 return 0.5;
             }else{
                 return 1;
             }
-        }else if(oponente.tipo.equals("Fuego")){
-            if (this.getTipo().equals("Agua")) {
+        }else if(this.tipo.equals("Fuego")){
+            if (oponente.getTipo().equals("Hierba")) {
                 return 2;
-            }else if(this.getTipo().equals("Hierba")){
+            }else if(oponente.getTipo().equals("Agua")||oponente.getTipo().equals("Fuego")){
                 return 0.5;
             }else{
                 return 1;
             }            
-        }else if(oponente.tipo.equals("Hierba")){
-            if (this.getTipo().equals("Fuego")) {
+        }else if(this.tipo.equals("Hierba")){
+            if (oponente.getTipo().equals("Agua")) {
                 return 2;
-            }else if(this.getTipo().equals("Hierba")||this.getTipo().equals("Eléctrico")||this.getTipo().equals("Agua")){
+            }else if(oponente.getTipo().equals("Fuego")||oponente.getTipo().equals("Hierba")){
                 return 0.5;
             }else{
                 return 1;
             }
-        }else if(oponente.tipo.equals("Eléctrico")){
-            if(this.getTipo().equals("Fuego")||this.getTipo().equals("Eléctrico")){
+        }else if(this.tipo.equals("Eléctrico")){
+            if (oponente.getTipo().equals("Agua")) {
+                return 2;
+            }else if(oponente.getTipo().equals("Hierba")||oponente.getTipo().equals("Eléctrico")){
                 return 0.5;
             }else{
                 return 1;
@@ -332,17 +345,23 @@ public class Pokemon {
      * durante un combate o para solo conocer sus características.
      */
     public void mostrarInfo() {
-        System.out.println("   "+this.apodo.toUpperCase());
-        System.out.println("Vida: "+this.vida);
-        System.out.println("Ataque: "+this.ataque);
-        System.out.println("Defensa: "+this.defensa);
-        System.out.println("Velocidad: "+this.velocidad);
-
-// AQUI FALTARIA IMPRIMIR LOS MOVIMIENTOS QUE TIENE EL POKEMON.
+        System.out.println("      "+this.apodo.toUpperCase());
+        System.out.println("   Tipo: "+this.tipo);
+        System.out.println("   Vida: "+this.vida);
+        System.out.println("   Ataque: "+this.ataque);
+        System.out.println("   Defensa: "+this.defensa);
+        System.out.println("   Velocidad: "+this.velocidad);
+        System.out.println("   Movimiento: "+this.movimiento);
+        System.out.println();
     }
 
-
-    public String toString() {
-        return "   "+this.apodo.toUpperCase()+"\nVida: "+this.vida+"\nAtaque: "+this.ataque+"\nDefensa: "+this.defensa+"\nVelocidad: "+this.velocidad;
+    public void atacar(Pokemon oponente){
+        System.out.println(calcularMultiplicadorElemental(oponente));
+        int danio = getAtaque() - oponente.getDefensa();
+        double multiplicador = calcularMultiplicadorElemental(oponente);
+        if (danio>0) {
+            int vidaOponente = (int) ( danio * multiplicador);
+            oponente.setVida( vidaOponente );
+        }
     }
 }

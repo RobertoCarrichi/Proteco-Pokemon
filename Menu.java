@@ -120,7 +120,7 @@ public class Menu{
 			System.out.println("\t# de condiciones entre todos los pokemon.             #");
 			System.out.println("\t#######################################################\n");
 			int elegidos=6;
-			for (int i = 0; i < 6; i++) {
+			for (int i = 0; i < 1; i++) {
 				boolean exit = false;
 				while (! exit) {
 					System.out.println("Elige uno de los siguientes nombres: ");
@@ -165,9 +165,8 @@ public class Menu{
 			System.out.println(" Que deseas hacer?");
 			System.out.println("   1. Realiza un ataque.");
 			System.out.println("   2. Usar pocion.");
-			System.out.println("   3. Ver pociones.");
-			System.out.println("   4. Ver pokemon.");
-			System.out.println("   5. Rendirse.");
+			System.out.println("   3. Cambiar pokemon.");
+			System.out.println("   4. Rendirse.");
 			System.out.printf(" Elige con el numero: \n ~> ");
 			opcion = scan.nextInt();
 			if ( opcion==1 || opcion==2 || opcion==3 || opcion==4 || opcion==5 ) {
@@ -189,11 +188,11 @@ public class Menu{
 		System.out.printf("Elige mediante el numero de pocion: \n ~> ");
 		int pocion = scan.nextInt();
 		if ( pocion == 1 || pocion == 2 || pocion == 3 || pocion == 4 || pocion == 5 || pocion == 6 ) {
-			if (jugador.getPociones().get(pocion).getEstado().equals("SIN UTILIZAR")){
-				return pocion;
-			} else {
+			if (jugador.getPociones().get(pocion).getEstado()){
 				System.out.println("\n\tOH NO! No has elegido una pocion que ya has utilizado, elige una sin utilizar. \n");
 				elegirPocion(jugador);			
+			} else {
+				return pocion;
 			}
 		} else {
 			System.out.println("\n\tOH NO! No has elegido un numero de pocion valido, intenta otra vez. \n");
@@ -216,6 +215,30 @@ public class Menu{
 		} else {
 			System.out.println("\n\tOH NO! No has elegido un numero de pocion valido, intenta otra vez. \n");
 			elegirPokemon(jugador);
+		}
+		return -1;
+	}
+
+	/**
+	 * 
+	 * @param jugador
+	 * @return
+	 */
+	public int elegirPeleador(Jugador jugador){
+		System.out.println("\n\tEste es tu peleador actual: \n");
+		jugador.getPokemones().get(jugador.getPeleador()).mostrarInfo();
+		System.out.printf("Con que pokemon quieres pelear ahora? Elige con el numero: \n ~> ");
+		int peleador = scan.nextInt();
+		if ( peleador == 1 || peleador == 2 || peleador == 3 || peleador == 4 || peleador == 5 || peleador == 6 ) {
+			if ( jugador.getPokemones().get(peleador-1).getEstado() ){
+				return peleador-1;
+			} else {
+				System.out.println("\n\tAY NO! Has elegido un pokemon debilitado, deberas elegir otro pokemon.\n");
+				elegirPeleador(jugador);
+			}
+		} else {
+			System.out.println("\n\tAY NO! Has elegido un pokemon que no existe, elige con cuidado.\n");
+			elegirPeleador(jugador);
 		}
 		return -1;
 	}

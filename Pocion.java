@@ -11,7 +11,7 @@ public class Pocion{
 	/**
 	 * 
 	 */
-	private String estado;
+	private boolean estado;
 
     /******************************************
      *              CONSTRUCTOR               *
@@ -22,7 +22,7 @@ public class Pocion{
 	 */
 	public Pocion(String tipo){
 		this.tipo = tipo;
-		this.setEstado("SIN UTILIZAR");
+		this.estado = false;
 	}
 
 	public String getTipo() {
@@ -33,11 +33,11 @@ public class Pocion{
 		this.tipo = tipo;
 	}
 
-	public String getEstado() {
+	public boolean getEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
 
@@ -55,6 +55,8 @@ public class Pocion{
 		}else{
 			System.out.println("ERROR! ¿Como puede haber una posion con tipo invalido?");
 		}
+		// Ya que si fue utilizada, el estado cambia.
+		this.estado = true;
 	}
 
 	/**
